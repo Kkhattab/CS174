@@ -50,7 +50,6 @@ public class PollettWebPageClient {
         String path = "/faculty/pollett/";
         if (args.length != 0) {
             path += args[0];
-            System.out.println(path);
         }
         Socket socket = connect(HOST, PORT);
         if (socket != null) {
