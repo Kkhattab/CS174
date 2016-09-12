@@ -7,11 +7,11 @@ Transfer-Encoding: chunked
 Content-Type: text/html; charset=UTF-8
 
 
-The X-Frame-Options HTTP response header can be used to indicate whether or not a browser should be allowed to render a page in a <frame> , <iframe> or <object> . Sites can use this to avoid clickjacking attacks, by ensuring that their content is not embedded into other sites. The CS Department is using SAMEORIGIN value which permits scripts contained in a first web page to access data in a second web page, but only if both web pages have the same origin. 
+The X-Frame-Options HTTP response header can be used to indicate whether or not a browser should be allowed to render a page in a <frame> , <iframe> or <object>. The CS Department is using SAMEORIGIN value which permits scripts contained in a first web page to access data in a second web page, but only if both web pages have the same origin. 
 
-Accept-Ranges HTTP response header is used by servers to tell clients whether they accept requests for ranges of a resource. The value of this header tells what type of ranges, if any, the server accepts for a given resource. CS Department is using bytes so if the byte-range-set is unsatisfiable, the server should return a response with a status of 416 (Requested range not satisfiable).
+Accept-Ranges HTTP response header is used by servers to tell what type of ranges, if any, the server accepts for a given resource. CS Department is using bytes so if the byte-range-set is unsatisfiable, the server should return a response with a status of 416 (Requested range not satisfiable).
 
 
-Tranfer-Encoding is the form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity. CS Department is returning chunked encoding, which has the benefit that it is not necessary to generate the full content before writing the header, making the connection available for the next HTTP request/response.
+Tranfer-Encoding is the form of encoding used to safely transfer the entity to the user ( chunked, compress, deflate, gzip, identity ) . CS Department is returning chunked encoding, which has the benefit that it is not necessary to generate the full content before writing the header, making the connection available for the next HTTP request/response.
 
 
