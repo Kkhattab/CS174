@@ -10,7 +10,7 @@
   <!-- load the spreadsheet -->
   <link rel="stylesheet" type="text/css" href="analytics.css">
 
-  
+
  </head>
 
 <body>
@@ -18,8 +18,7 @@
 
 <?php 
   
-  // ================
-  // The PHP magic :)
+  // =============
 
   // set the URL_TO_TRACKER_SITE 
   define("URL_TO_TRACKER_SITE" , "http://localhost/hw2/analytics");
@@ -28,7 +27,7 @@
   // check if $_REQUEST['activity'] is set
   if (isset($_REQUEST['activity'])) {
 
-    // check if $_REQUEST['activity'] is one of the values: codes, counts, or analytics (I guess you are using SWITCH statemant and not IF/ELSE)
+    // check if $_REQUEST['activity'] is one of the values: codes, counts, or analytics 
     switch ($_REQUEST['activity']) {
 
         case "codes":
@@ -43,7 +42,7 @@
           analytics();
             break;
 
-        //If your script doesn't see $_REQUEST['activity'] set or it is not set to one of these values, then index.php should call a function default() (I had to call it defaultFunction as the word 'default' is reserved in PHP)
+        //If $_REQUEST['activity'] set or it is not set to one of these values, then index.php should call a function defaultFunction()
         default:
         defaultFunction();
     }
@@ -58,12 +57,13 @@
 
 
   // =========================
-  // HERE WE SET THE FUNCTIONS
+  // SET THE FUNCTIONS
 
   
   /**
    * the DEFAULT function to draw the form
    */
+
   function defaultFunction() { 
 
     // stop PHP to echo the form
@@ -96,6 +96,7 @@
   /**
    * Codes function to enter the url-s
    */
+
   function codes(){
 
     // check if arg is not set or is empty amd call defaultFunction
@@ -200,8 +201,9 @@
 
   /**
    * Count the visitors
-   * I had to call it countFunction as the function count is reserved in PHP / it counts items in an array
+   * countFunction()
    */
+
   function countFunction(){
 
     // test for 'arg' and 'arg2' vars
@@ -253,6 +255,7 @@
   /**
    * The function to display the analytics
    */
+  
   function analytics() {
 
     // echo the page
