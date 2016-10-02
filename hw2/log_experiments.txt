@@ -33,3 +33,8 @@
 10 ::1 - - [02/Oct/2016:14:07:42 -0700] "GET /hw1/conspiracy/jfk.ico HTTP/1.1" 200 2149
 
 
+For the monthly history chart, it is possible to find out the dates when pages were visited from the logs, and through that, to create an aggregation, or counts of the page visits. We can also get the number of pages per url, and the unique visitors as different users have unique requests. 
+For the days of the month chart, we can also infer the number of page visits and which day the page was visited on within the month from the logs. 
+For days of the week, since the date of when the page was visited is in the logs, a simple math algorithm can indicate which day of the week it was and thus provide the information for this chart.
+For hours, we can see at which hour the page/pages were visted from the logs, and can aggregate the total number of visits within a specific hour, and also calculate the bandwidth usage and hits.
+For countries, we may be able to infer the location of the user based on the time offset, from UTC, which is also included in the logs of when the pages were accessed.
