@@ -1,1 +1,1 @@
-a:1:{s:40:"46ab5175718b9dd1351837a9963e4eec43ac55c9";s:30:"http://localhost/hw2/analytics";}
+a:1:{s:40:"84d1657c481390a0a636916cb95718cf018dbf59";s:40:"http://localhost/hw2/analytics/index.php";}
