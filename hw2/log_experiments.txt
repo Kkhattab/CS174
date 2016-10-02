@@ -1,0 +1,35 @@
+1 http://localhost
+2 http://localhost/hw1
+3 http://localhost/hw2
+4	http://localhost/phpmyadmin
+5 http://localhost/phpmyadmin/server_sql.php?db=&token=1e1166da35ed1a24d3b75724769afad6
+6 http://localhost/phpmyadmin/server_status.php?db=&token=1e1166da35ed1a24d3b75724769afad6
+7 http://localhost/phpmyadmin/prefs_manage.php?db=&token=1e1166da35ed1a24d3b75724769afad6
+8 http://localhost/hw3/
+9 http://localhost/hw4/readme.md
+10 http://localhost/hw1/conspiracy/
+
+
+1 ::1 - - [02/Oct/2016:13:56:23 -0700] "GET / HTTP/1.1" 200 1729
+2 ::1 - - [02/Oct/2016:13:58:18 -0700] "GET /hw1 HTTP/1.1" 301 229
+2 ::1 - - [02/Oct/2016:13:58:18 -0700] "GET /hw1/ HTTP/1.1" 200 2224
+2 ::1 - - [02/Oct/2016:13:58:18 -0700] "GET /icons/compressed.gif HTTP/1.1" 200 1038
+2 ::1 - - [02/Oct/2016:13:58:18 -0700] "GET /icons/text.gif HTTP/1.1" 200 229
+2 ::1 - - [02/Oct/2016:13:58:18 -0700] "GET /icons/image2.gif HTTP/1.1" 200 309
+3 ::1 - - [02/Oct/2016:13:59:08 -0700] "GET /hw2/ HTTP/1.1" 200 1315
+4 ::1 - - [02/Oct/2016:13:59:58 -0700] "GET /phpmyadmin/ HTTP/1.1" 200 12541
+4 ::1 - - [02/Oct/2016:13:59:58 -0700] "POST /phpmyadmin/navigation.php?ajax_request=1&token=1e1166da35ed1a24d3b75724769afad6 HTTP/1.1" 200 1999
+4 ::1 - - [02/Oct/2016:13:59:58 -0700] "POST /phpmyadmin/db_structure.php?ajax_request=1&favorite_table=1&sync_favorite_tables=1&token=1e1166da35ed1a24d3b75724769afad6 HTTP/1.1" 200 143
+4 ::1 - - [02/Oct/2016:13:59:58 -0700] "GET /phpmyadmin/version_check.php?server=1&_nocache=1475441998654200456 HTTP/1.1" 200 39
+5 ::1 - - [02/Oct/2016:14:00:55 -0700] "GET /phpmyadmin/server_sql.php?db=&token=1e1166da35ed1a24d3b75724769afad6&ajax_request=true&ajax_page_request=true&_nocache=1475442055426932569 HTTP/1.1" 200 4208
+5 ::1 - - [02/Oct/2016:14:00:55 -0700] "GET /phpmyadmin/js/get_scripts.js.php?scripts%5B%5D=makegrid.js&scripts%5B%5D=jquery/jquery.uitablefilter.js&scripts%5B%5D=sql.js&call_done=1&v=4.5.2 HTTP/1.1" 200 26455
+6 ::1 - - [02/Oct/2016:14:01:31 -0700] "GET /phpmyadmin/server_status.php?db=&token=1e1166da35ed1a24d3b75724769afad6&ajax_request=true&ajax_page_request=true&_nocache=1475442091555513287 HTTP/1.1" 200 1943
+7 ::1 - - [02/Oct/2016:14:01:55 -0700] "GET /phpmyadmin/prefs_manage.php?db=&token=1e1166da35ed1a24d3b75724769afad6&ajax_request=true&ajax_page_request=true&_nocache=1475442115042550107 HTTP/1.1" 200 2658
+8 ::1 - - [02/Oct/2016:14:02:24 -0700] "GET /hw3 HTTP/1.1" 301 229
+8 ::1 - - [02/Oct/2016:14:02:24 -0700] "GET /hw3/ HTTP/1.1" 200 882
+9 ::1 - - [02/Oct/2016:14:03:55 -0700] "GET /hw4/readme.md HTTP/1.1" 200 66
+10 ::1 - - [02/Oct/2016:14:07:42 -0700] "GET /hw1/conspiracy/ HTTP/1.1" 200 1356
+10 ::1 - - [02/Oct/2016:14:07:42 -0700] "GET /hw1/conspiracy/jfk.png HTTP/1.1" 200 528657
+10 ::1 - - [02/Oct/2016:14:07:42 -0700] "GET /hw1/conspiracy/jfk.ico HTTP/1.1" 200 2149
+
+
