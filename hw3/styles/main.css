@@ -1,0 +1,56 @@
+.wrap {
+	margin:0px auto;
+	max-width:960px;
+}
+
+h1 {
+	text-align:center;
+}
+
+#entry-form fieldset {
+	border:0px;
+	padding:10px;
+	margin:0px;
+}
+
+#entry-form label {
+	display:block;
+	font-weight:bold;
+}
+
+#entry-form input[type='text'] {
+	max-width:600px;
+	width:100%;
+	box-sizing: border-box;
+	padding:5px;
+	height:30px;
+	font-size:14px;
+	line-height:20px;
+}
+
+#entry-form textarea {
+	max-width:600px;
+	min-height:200px;
+	width:100%;
+	box-sizing: border-box;
+	padding:10px;
+	font-size:14px;
+	line-height:20px;
+	overflow:auto;
+}
+
+.form-error {
+	color:red;
+}
+
+.entry-rating > * {
+	margin:0px 4px;
+}
+
+.entry-title {
+	text-align:center;
+}
+
+.entry-author {
+	text-align:center;
+}

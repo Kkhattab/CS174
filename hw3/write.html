@@ -1,0 +1,56 @@
+
+	<!DOCTYPE html>
+		<html>
+			<head>
+				<title>Five Thousand Characters - Write Something</title>
+				<link rel="stylesheet" type="text/css" href="styles/main.css" />
+			</head>
+			
+			<body>
+			
+			<div class='wrap' >
+			
+			<h1 class='entry-title'>
+				<a href='index.php' >Five Thousand Characters</a> - Write Something
+			</h1>
+		
+		<form id="entry-form">
+			<fieldset>
+				<label> Title </label>
+				<input   id="entry_title" type="text" />
+			</fieldset>
+			
+			<fieldset>
+				<label> Author </label>
+				<input  id="entry_author" type="text" />
+			</fieldset>
+			
+			<fieldset>
+				<label> Identifier </label>
+				<input id="entry_identifier" type="text"/>
+			</fieldset>
+			
+			<fieldset>
+				<label> Genre </label>
+				<select multiple id="entry_genre">
+					<option> Comedy </option> 
+					<option> Epic </option>
+					<option> Novel </option>
+					<option> Short story </option>
+					<option> Tragedy </option>				
+				</select>
+			</fieldset>
+		
+			<fieldset>
+				<label> Your Writing </label>
+				<textarea  id="entry_content" ></textarea>
+			</fieldset>
+			
+			<fieldset>
+				<input type="submit" value="Save" name="submit" />
+			</fieldset>
+			</form>
+		</div>
+		</body>
+	</html>
+	
