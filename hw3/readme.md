@@ -8,6 +8,7 @@ Kevin Hou : 008345688
 The site should consist of three main views: The Landing Page view, the Write Something view, the Read A Story view.
 
 Landing View: 
+	
 	•	Centered h1 tag “Five Thousand Characters
 	•	Title of the HTML page should be same as h1 tag “Five Thousand Characters” 
 	•	A link underneath h1 tag “Write Something” that will navigate to the Write Something view
@@ -47,6 +48,7 @@ Write Something View:
 	•	If a user enters a Identifier into the Identifier label than all the data of that story should populate the forms. An Identifier can just be a integer that is randomly generated and attached to a story every time they are created in the Write Something view. 
 
 Read A Story View: 
+	
 	•	When a user clicks on a story from Landing Page View (the three lists from above) they are taken to this view.
 	•	Title "Five Thousand Characters - Story Title" 
 	•	h1 tag centered "Five Thousand Characters - Story Title" 
@@ -58,6 +60,7 @@ Read A Story View:
 	⁃	The two columns in the database row associated to the identifier of the story should be adjusted “SUM_OF_RATINGS_SO_FAR” and “NUMBER_OF_RATINGS_SO_FAR” 
 	⁃	These are the two values that you will use to compute the average rating. So SUM_OF_RATINGS_SO_FAR / NUMBER_OF_RATINGS_SO_FAR
 	•	On the  bottom of this view show in a sequence of paragraph tags the time stamp of when the story was last saved. So every time the text changes (someone edits the info of a story) add a new paragraph tag with when it was updated and the text at the time of the story being saved. 
+
 
 Code Structure: 
 
@@ -71,7 +74,8 @@ folder
 		styles 
 		views 
 			elements 
-			helpers 
+			helpers
+
 
 Namespace: kareemkevin\hw3\…. 
 
