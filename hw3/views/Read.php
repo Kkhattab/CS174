@@ -14,9 +14,7 @@ class Read extends Base {
 		$html .= '<h1 class="entry-title"><a href="index.php" >' . $data["site_title"] . '</a> - '. '<font> Harry Potter </font>'. '</h1>';
 		$html .= '<div class="entry-author" >' . '<font> Kareem Khattab </font> ' .'</div>';
 		$html .= '<div class="entry-date" >' . '<font> 10-25-16 10:02:35</font> ' . '</div>';
-		$html .= '<div class="entry-rating" >Your rating: ';
-
-		$rating = new Helpers\Rating( $this );
+		$html .= '<div class="entry-rating" >Your rating: 2.5';
 		
 		$html .= '</div>';
 		$html .= '<div class="average-rating" >Average Rating: ' . '<font> 4.5 </font>' . '</div>';
