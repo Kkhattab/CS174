@@ -16,6 +16,12 @@ switch( $controller ):
 
 	break;
 
+	case "read" :
+
+		$controller = new Controllers\Read();
+		
+	break;
+
 	default :
 	    //Output a message and terminate the current script
 		die("Page not found.");
