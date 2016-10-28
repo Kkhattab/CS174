@@ -39,6 +39,10 @@ h1 {
 	overflow:auto;
 }
 
+#entry-form  textarea.error {
+	border:1px solid red;
+}
+
 .form-error {
 	color:red;
 }
