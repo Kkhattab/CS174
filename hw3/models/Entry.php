@@ -96,4 +96,63 @@ class Entry extends Base {
 		return !empty( $this->id );
 	}
 
+
+
+	//rating functions
+
+
+	public function already_voted(){
+
+		// check session variable
+		return isset( $_SESSION[ "rating_" . $this->id ] );
+	}
+
+	public function is_rating_allowed( $rating = 0 ){
+
+		$allowed_ratings = array( 1 , 2 , 3 , 4, 5 );
+
+		return in_array( $rating , $allowed_ratings );
+	}
+
+	public function rate( $rating ){
+
+		if( !$this->id ) return;
+
+		$this->rating_num++;
+		$this->rating_sum+= $rating;
+
+		$this->db_connect();
+
+		$sql = sprintf( 
+				"UPDATE entries SET 
+				entry_title = '%s' ,
+				entry_author = '%s' ,
+				entry_identifier = '%s' ,
+				entry_text = '%s' ,
+				entry_rating_sum = '%s' ,
+				entry_rating_num = '%s' ,
+				entry_views = '%s' ,
+				entry_created = '%s' ,
+				entry_modified = '%s' 
+				WHERE entry_id = '%s' " , 
+				mysql_real_escape_string( $this->title ) ,
+				mysql_real_escape_string( $this->author ) ,
+				mysql_real_escape_string( $this->identifier ) ,
+				mysql_real_escape_string( $this->text ) ,
+				mysql_real_escape_string( $this->rating_sum ) ,
+				mysql_real_escape_string( $this->rating_num ) ,
+				mysql_real_escape_string( $this->views ) ,
+				mysql_real_escape_string( $this->created ) ,
+				mysql_real_escape_string( $this->modified ) ,
+				$this->id 
+			);
+			mysql_query( $sql ) or die( $sql );
+
+		$this->db_disconnect();
+
+		// set session variable that is used in template as YOUR RATING
+		$_SESSION[ "rating_" . $this->id ] = $rating;
+		
+	}
+
 }
