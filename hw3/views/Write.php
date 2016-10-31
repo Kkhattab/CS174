@@ -2,6 +2,7 @@
 
 namespace kareemkevin\hw3\Views;
 use kareemkevin\hw3\Models as Models;
+use kareemkevin\hw3\configs\Config;
 
 class Write extends Base {
 	/* access this page right now through this link: http://localhost/hw3/index.php?c=write */ 
@@ -19,17 +20,16 @@ class Write extends Base {
 		$html .= '<form action="" method="post">' .
 		'Title<br><input type="text" name="title"><br>' . 
 		'Author<br><input type="text" name="author"><br>' . 
-		'Identifier<br><input type="text" name="identifier"><br>' . // identifier auto-fill needed
+		'Identifier<br><input type="text" name="identifier"><br>' .
 		'Genre<br><select name="genre">';
 
 		$genres_options = new Helpers\Options( $this );
 		$genres = new Models\Genres();
 
 		$genres_render_data = array( 
-			"all" => "All Genres", 
 			"selected" => $data["genre"] , 
 			"items" => $genres->get_list() 
-		);
+			);
 
 		// get all genres from db and output as <option></option>.. see helper Options.php 
 
@@ -42,10 +42,8 @@ class Write extends Base {
 		'</form>';
 
 		if(isset($_POST) && isset($_POST['title']) && isset($_POST['author']) && isset($_POST['identifier']) && isset($_POST['genre']) && isset($_POST['text']) && isset($_POST['genre'])){
-
-				$entry = new Models\Entry();
-				$entry->save_entry();
-
+			$entry = new Models\Entry();
+			$entry->save_entry();
 		}
 
 		$html .= $this->render_footer( $data );

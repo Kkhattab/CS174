@@ -6,29 +6,34 @@ class Entry extends Base {
 
 	function save_entry (){
 
-		$entry_created = date("Y-m-d H:i:s");
-
 		$this->db_connect();
 
-		$sql = 'SELECT * FROM entries WHERE entry_identifier="'. $_POST['identifier'] . ' ORDER BY entry_id ASC LIMIT 1";';
+		$sql = 'SELECT * FROM entries WHERE entry_identifier="'. $_POST['identifier'] . '"' . 'ORDER BY entry_id ASC LIMIT 1;';
 
-		$exists = mysql_query( $sql ) or die( $sql );
+		$result = mysql_query( $sql ) or die( $sql );
 
-		if ($exists) {
+		if (mysql_num_rows($result) == 0)  {
+			$sql = 'INSERT INTO entries (entry_title, entry_author, entry_identifier, entry_text, entry_created) ' . 
+			'VALUES ("' . $_POST['title'] . '","' . $_POST['author'] . '","' . $_POST['identifier'] . '","' . $_POST['text'] . '","' . date("Y-m-d H:i:s") . '");';
 
+			mysql_query( $sql ) or die( $sql );
+
+			$sql = 'INSERT INTO entry_genres (genre_id, entry_id) ' .
+			'VALUES (' . $_POST['genre'] . ', LAST_INSERT_ID());';
+
+			mysql_query( $sql ) or die( $sql );
 			
-
 		} else {
 
-		$sql = 'INSERT INTO entries (entry_title, entry_author, entry_identifier, entry_text, entry_created) ' . 
-		'VALUES ("' . $_POST['title'] . '","' . $_POST['author'] . '","' . $_POST['identifier'] . '","' . $_POST['text'] . '","' . $entry_created . '");';
+			$sql = 'UPDATE entries SET entry_title="' . $_POST['title'] . '", entry_author="' . $_POST['author'] . '", entry_text="' . $_POST['text'] . '", entry_modified="' . date("Y-m-d H:i:s") . '" ' . 'WHERE entry_identifier="' . $_POST['identifier'] . '";';
 
-		mysql_query( $sql ) or die( $sql );
+			mysql_query( $sql ) or die( $sql );
 
-		$sql = 'INSERT INTO entry_genres (genre_id, entry_id) ' .
-		'VALUES (' . $_POST['genre'] . ', LAST_INSERT_ID());';
+			$row = mysql_fetch_assoc($result);
 
-		mysql_query( $sql ) or die( $sql );
+			$sql = 'UPDATE entry_genres SET genre_id=' . $_POST['genre'] . ' WHERE entry_id=' . $row['entry_id'] . ';';
+
+			mysql_query( $sql ) or die( $sql );
 
 		}
 
