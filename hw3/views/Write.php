@@ -41,7 +41,7 @@ class Write extends Base {
 		'<button type="reset" value="Reset">Reset</button></div>' .
 		'</form>';
 
-		if(isset($_POST) && isset($_POST['title']) && isset($_POST['author']) && isset($_POST['identifier']) && isset($_POST['genre']) && isset($_POST['text'])){
+		if(isset($_POST) && isset($_POST['title']) && isset($_POST['author']) && isset($_POST['identifier']) && isset($_POST['genre']) && isset($_POST['text']) && isset($_POST['genre'])){
 
 				$entry = new Models\Entry();
 				$entry->save_entry();

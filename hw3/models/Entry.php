@@ -15,6 +15,11 @@ class Entry extends Base {
 
 		mysql_query( $sql ) or die( $sql );
 
+		$sql = 'INSERT INTO entry_genres (genre_id, entry_id) ' .
+		'VALUES (' . $_POST['genre'] . ', LAST_INSERT_ID());';
+
+		mysql_query( $sql ) or die( $sql );
+
 		$this->db_disconnect();
 
 	}
