@@ -1,11 +1,14 @@
 <?php
 
 namespace kareemkevin\hw3\Views;
+use kareemkevin\hw3\Models as Models;
 
 class Write extends Base {
 	/* access this page right now through this link: http://localhost/hw3/index.php?c=write */ 
 	
 	function render( $data ){
+
+		if( !isset( $data["genre"] ) ) $data["genre"] = "";
 
 		$html = "";
 
@@ -17,13 +20,34 @@ class Write extends Base {
 		'Title<br><input type="text" name="title"><br>' . 
 		'Author<br><input type="text" name="author"><br>' . 
 		'Identifier<br><input type="text" name="identifier"><br>' . // identifier auto-fill needed
-		'Genre<br><select name="select">' . // populate select
-		'</select><br> ' . 
-		'Your Writing<br><textarea name="writing"></textarea>' .
+		'Genre<br><select name="genre">';
+
+		$genres_options = new Helpers\Options( $this );
+		$genres = new Models\Genres();
+
+		$genres_render_data = array( 
+			"all" => "All Genres", 
+			"selected" => $data["genre"] , 
+			"items" => $genres->get_list() 
+		);
+
+		// get all genres from db and output as <option></option>.. see helper Options.php 
+
+		$html .= $genres_options->render( $genres_render_data );
+
+		$html .= '</select><br>' . 
+		'Your Writing<br><textarea name="text"></textarea>' .
 		'<div class="buttons"><button type="submit" value="Save">Save</button>' .
 		'<button type="reset" value="Reset">Reset</button></div>' .
-		'</form>';	
-	
+		'</form>';
+
+		if(isset($_POST) && isset($_POST['title']) && isset($_POST['author']) && isset($_POST['identifier']) && isset($_POST['genre']) && isset($_POST['text'])){
+			$html .= '<div>HELLO</div>';
+				$entry = new Models\Entry();
+				$entry->save_entry(isset($_POST['title']), isset($_POST['author']), isset($_POST['identifier']), isset($_POST['genre']), isset($_POST['text']));
+
+		}
+
 		$html .= $this->render_footer( $data );
 
 		echo $html;
