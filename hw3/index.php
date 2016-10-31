@@ -22,6 +22,12 @@ switch( $controller ):
 		
 	break;
 
+	case "write" :
+
+		$controller = new Controllers\Write();
+
+	break;
+
 	default :
 	    //Output a message and terminate the current script
 		die("Page not found.");

@@ -14,7 +14,7 @@ class Read extends Base {
 		$data = array(
 			"site_title" => "Five Thousand Characters"
 		);
-		//were gnna need to pass in the id of the story we clicked into the _GET
+		//were gonna need to pass in the id of the story we clicked into the _GET
 		
 		$view->render( $data );
 	}
