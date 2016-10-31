@@ -3,6 +3,44 @@
 namespace kareemkevin\hw3\Models;
 
 class Entry extends Base {
+
+	function save_entry (){
+
+		$this->db_connect();
+
+		$sql = 'SELECT * FROM entries WHERE entry_identifier="'. $_POST['identifier'] . '"' . 'ORDER BY entry_id ASC LIMIT 1;';
+
+		$result = mysql_query( $sql ) or die( $sql );
+
+		if (mysql_num_rows($result) == 0)  {
+			$sql = 'INSERT INTO entries (entry_title, entry_author, entry_identifier, entry_text, entry_created) ' . 
+			'VALUES ("' . $_POST['title'] . '","' . $_POST['author'] . '","' . $_POST['identifier'] . '","' . $_POST['text'] . '","' . date("Y-m-d H:i:s") . '");';
+
+			mysql_query( $sql ) or die( $sql );
+
+			$sql = 'INSERT INTO entry_genres (genre_id, entry_id) ' .
+			'VALUES (' . $_POST['genre'] . ', LAST_INSERT_ID());';
+
+			mysql_query( $sql ) or die( $sql );
+			
+		} else {
+
+			$sql = 'UPDATE entries SET entry_title="' . $_POST['title'] . '", entry_author="' . $_POST['author'] . '", entry_text="' . $_POST['text'] . '", entry_modified="' . date("Y-m-d H:i:s") . '" ' . 'WHERE entry_identifier="' . $_POST['identifier'] . '";';
+
+			mysql_query( $sql ) or die( $sql );
+
+			$row = mysql_fetch_assoc($result);
+
+			$sql = 'UPDATE entry_genres SET genre_id=' . $_POST['genre'] . ' WHERE entry_id=' . $row['entry_id'] . ';';
+
+			mysql_query( $sql ) or die( $sql );
+
+		}
+
+		$this->db_disconnect();
+
+	}
+
 	//save
 	//loaded_by_indentifier 
 	//is loaded
@@ -64,29 +102,29 @@ class Entry extends Base {
 		$this->db_connect();
 
 		$sql = sprintf( 
-				"UPDATE entries SET 
-				entry_title = '%s' ,
-				entry_author = '%s' ,
-				entry_identifier = '%s' ,
-				entry_text = '%s' ,
-				entry_rating_sum = '%s' ,
-				entry_rating_num = '%s' ,
-				entry_views = '%s' ,
-				entry_created = '%s' ,
-				entry_modified = '%s' 
-				WHERE entry_id = '%s' " , 
-				mysql_real_escape_string( $this->title ) ,
-				mysql_real_escape_string( $this->author ) ,
-				mysql_real_escape_string( $this->identifier ) ,
-				mysql_real_escape_string( $this->text ) ,
-				mysql_real_escape_string( $this->rating_sum ) ,
-				mysql_real_escape_string( $this->rating_num ) ,
-				mysql_real_escape_string( $this->views ) ,
-				mysql_real_escape_string( $this->created ) ,
-				mysql_real_escape_string( $this->modified ) ,
-				$this->id 
+			"UPDATE entries SET 
+			entry_title = '%s' ,
+			entry_author = '%s' ,
+			entry_identifier = '%s' ,
+			entry_text = '%s' ,
+			entry_rating_sum = '%s' ,
+			entry_rating_num = '%s' ,
+			entry_views = '%s' ,
+			entry_created = '%s' ,
+			entry_modified = '%s' 
+			WHERE entry_id = '%s' " , 
+			mysql_real_escape_string( $this->title ) ,
+			mysql_real_escape_string( $this->author ) ,
+			mysql_real_escape_string( $this->identifier ) ,
+			mysql_real_escape_string( $this->text ) ,
+			mysql_real_escape_string( $this->rating_sum ) ,
+			mysql_real_escape_string( $this->rating_num ) ,
+			mysql_real_escape_string( $this->views ) ,
+			mysql_real_escape_string( $this->created ) ,
+			mysql_real_escape_string( $this->modified ) ,
+			$this->id 
 			);
-			mysql_query( $sql ) or die( $sql );
+		mysql_query( $sql ) or die( $sql );
 
 		$this->db_disconnect();
 	}
@@ -95,8 +133,6 @@ class Entry extends Base {
 
 		return !empty( $this->id );
 	}
-
-
 
 	//rating functions
 
@@ -154,5 +190,4 @@ class Entry extends Base {
 		$_SESSION[ "rating_" . $this->id ] = $rating;
 		
 	}
-
 }
