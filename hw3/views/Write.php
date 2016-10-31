@@ -19,9 +19,9 @@ class Write extends Base {
 		'Identifier<br><input type="text" name="identifier"><br>' . // identifier auto-fill needed
 		'Genre<br><select name="select">' . // populate select
 		'</select><br> ' . 
-		'Your Writing<br><input type="textarea" name="writing">' .
-		'<button type="submit" value="Save">Save</button>' .
-		'<button type="reset" value="Reset">Reset</button>' .
+		'Your Writing<br><textarea name="writing"></textarea>' .
+		'<div class="buttons"><button type="submit" value="Save">Save</button>' .
+		'<button type="reset" value="Reset">Reset</button></div>' .
 		'</form>';	
 	
 		$html .= $this->render_footer( $data );
