@@ -10,7 +10,7 @@ namespace kareemkevin\hw3\configs;
 class Config {
 	const DBUSER = "root";
 	const DBPASS = "";
-	const DBNAME = "kareem";
+	const DBNAME = "kareemkevin";
 	const DBHOST = "localhost";
 	const BASEURL = "http://localhost/hw3";
 	const TEXT_MIN_LENGTH = 1;
