@@ -10,6 +10,16 @@ class Entry extends Base {
 
 		$this->db_connect();
 
+		$sql = 'SELECT * FROM entries WHERE entry_identifier="'. $_POST['identifier'] . ' ORDER BY entry_id ASC LIMIT 1";';
+
+		$exists = mysql_query( $sql ) or die( $sql );
+
+		if ($exists) {
+
+			
+
+		} else {
+
 		$sql = 'INSERT INTO entries (entry_title, entry_author, entry_identifier, entry_text, entry_created) ' . 
 		'VALUES ("' . $_POST['title'] . '","' . $_POST['author'] . '","' . $_POST['identifier'] . '","' . $_POST['text'] . '","' . $entry_created . '");';
 
@@ -19,6 +29,8 @@ class Entry extends Base {
 		'VALUES (' . $_POST['genre'] . ', LAST_INSERT_ID());';
 
 		mysql_query( $sql ) or die( $sql );
+
+		}
 
 		$this->db_disconnect();
 
