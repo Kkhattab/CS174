@@ -42,9 +42,9 @@ class Write extends Base {
 		'</form>';
 
 		if(isset($_POST) && isset($_POST['title']) && isset($_POST['author']) && isset($_POST['identifier']) && isset($_POST['genre']) && isset($_POST['text'])){
-			$html .= '<div>HELLO</div>';
+
 				$entry = new Models\Entry();
-				$entry->save_entry(isset($_POST['title']), isset($_POST['author']), isset($_POST['identifier']), isset($_POST['genre']), isset($_POST['text']));
+				$entry->save_entry();
 
 		}
 

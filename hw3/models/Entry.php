@@ -4,18 +4,19 @@ namespace kareemkevin\hw3\Models;
 
 class Entry extends Base {
 
-	function save_entry ( $entry_title, $entry_author, $entry_identifier, $entry_text ){
+	function save_entry (){
 
 		$entry_created = date("Y-m-d H:i:s");
 
 		$this->db_connect();
 
 		$sql = 'INSERT INTO entries (entry_title, entry_author, entry_identifier, entry_text, entry_created) ' . 
-		'VALUES ("' . $entry_title . '","' . $entry_author . '","' . $entry_identifier . '","' . $entry_text . '",' . $entry_created . ')';
+		'VALUES ("' . $_POST['title'] . '","' . $_POST['author'] . '","' . $_POST['identifier'] . '","' . $_POST['text'] . '",' . $entry_created . ');';
 
-		mysqli_execute($sql);
+		mysql_query( $sql ) or die( $sql );
 
 		$this->db_disconnect();
+
 	}
 
 	//save
