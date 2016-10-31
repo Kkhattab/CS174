@@ -54,19 +54,26 @@ class Landing extends Base {
 
 		$html .= '<h3>Highest Rated</h3>';
 		$html .= '<ul>';
+		
+		// get entries, only difference is the sorting in the db, for these 3 widgets
+		$list_render_data = array(
+			"items" => $entries->get_highest_rated(  $data["filter"], $data["genre"] )
+		);
 
-		$html .= '<li> Harry Potter </li>'; 
-		$html .= '<li> The Hobbit </li>'; 
-		$html .= '<li> Twilight: New Moon </li>'; 
+		$html .= $list->render( $list_render_data );
+
 
 		$html .= '</ul>';
 		$html .= '<h3>Most viewed</h3>';
 		$html .= '<ul>';
 
-		$html .= '<li> Harry Potter </li>'; 
-		$html .= '<li> The Hobbit </li>'; 
-		$html .= '<li> Twilight: New Moon </li>'; 
-				
+		// get entries, only difference is the sorting in the db, for these 3 widgets
+		$list_render_data = array(
+			"items" => $entries->get_most_viewed( $data["filter"], $data["genre"] )
+		);
+
+		$html .= $list->render( $list_render_data );
+		
 		$html .= '</ul>';
 		
 		$html .= '<h3>Newest</h3>';
