@@ -11,14 +11,16 @@ class Read extends Base {
 
 		$html .= $this->render_header( $data );
 		
-		$html .= '<h1 class="entry-title"><a href="index.php" >' . $data["site_title"] . '</a> - '. '<font> Harry Potter </font>'. '</h1>';
-		$html .= '<div class="entry-author" >' . '<font> Kareem Khattab </font> ' .'</div>';
-		$html .= '<div class="entry-date" >' . '<font> 10-25-16 10:02:35</font> ' . '</div>';
-		$html .= '<div class="entry-rating" >Your rating: 2.5';
+		//index.php with no c or m will take us back to landing
+		$html .= '<h1 class="entry-title"><a href="index.php" >' . $data["site_title"] . '</a> - '. $data["entry_title"] . '</h1>';
+		$html .= '<div class="entry-author" >' . $data["entry_author"] .'</div>';
+		$html .= '<div class="entry-date" >' .  $data["entry_created"] . '</div>';
+		$html .= '<div class="entry-rating" >Your rating: ';
+
 		
 		$html .= '</div>';
-		$html .= '<div class="average-rating" >Average Rating: ' . '<font> 4.5 </font>' . '</div>';
-		$html .= '<div class="entry-content" >' . 'fasjdfkjasdlkfjlaskjflsdfl' .'</div>';
+	
+		$html .= '<div class="entry-content" >' . $data["entry_content"] .'</div>';
 	
 		$html .= $this->render_footer( $data );
 
