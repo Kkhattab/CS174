@@ -6,6 +6,7 @@ include "configs/autoloader.php";
 //$_GET contains the keys / values that are passed to your script in the URL.
 // We will use c in the url for controller index.php?c=read or index.php?c=write
 $controller = isset($_GET["c"]) ? $_GET["c"] : "landing";
+// default method is index
 $method = isset($_GET["m"]) ? $_GET["m"] : "index";
 
 switch( $controller ):

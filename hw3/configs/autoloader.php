@@ -2,8 +2,10 @@
 
 <?php
 
+// path to root of the site
 define("ABSPATH",dirname( dirname(__FILE__) ) );
 
+// start session, so that we can use $_SESSION variable.
 session_start();
 
 spl_autoload_register(function ($class) {

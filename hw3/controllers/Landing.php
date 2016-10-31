@@ -2,8 +2,10 @@
 
 namespace kareemkevin\hw3\Controllers;
 use kareemkevin\hw3\Views as Views;
+/* http://php.net/manual/en/reserved.variables.session.php */ 
 
 class Landing extends Base {
+	 /*$_Session  global variable*/
 
 	function index(){
 		
