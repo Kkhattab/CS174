@@ -19,8 +19,8 @@ class Landing extends Base {
 		
 		// title from contoller $data["site_title"]
 		$html .= '<h1>' .  $data["site_title"] .'</h1>';
-		
-		$html .= '<p><a href="" >Write Something</a></p>';
+
+		$html .= '<p><a href="index.php?c=write" >Write Something</a></p>';
 		
 		$html .= '<p>Check out what people are writting</p>';
 		
