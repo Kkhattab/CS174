@@ -11,7 +11,7 @@ class Entry extends Base {
 		$this->db_connect();
 
 		$sql = 'INSERT INTO entries (entry_title, entry_author, entry_identifier, entry_text, entry_created) ' . 
-		'VALUES ("' . $_POST['title'] . '","' . $_POST['author'] . '","' . $_POST['identifier'] . '","' . $_POST['text'] . '",' . $entry_created . ');';
+		'VALUES ("' . $_POST['title'] . '","' . $_POST['author'] . '","' . $_POST['identifier'] . '","' . $_POST['text'] . '","' . $entry_created . '");';
 
 		mysql_query( $sql ) or die( $sql );
 
