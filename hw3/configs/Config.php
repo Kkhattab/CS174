@@ -13,6 +13,6 @@ class Config {
 	const DBNAME = "kareem";
 	const DBHOST = "localhost";
 	const BASEURL = "http://localhost/hw3";
-	const TEXT_MIN_LENGTH = 10;
+	const TEXT_MIN_LENGTH = 1;
 	const TEXT_MAX_LENGTH = 5000;
 }
