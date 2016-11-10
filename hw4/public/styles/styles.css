@@ -1,0 +1,17 @@
+h1{
+	text-align: center;
+}
+h2{
+	text-align: center;
+}
+.wrapper{
+	text-align: center;
+}
+#chartTitle{
+	position: relative;
+}
+#dataEntry{
+	position: relative;
+	width: 198px;
+	height: 100px;
+}
