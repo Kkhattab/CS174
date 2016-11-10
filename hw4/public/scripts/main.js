@@ -2,7 +2,6 @@ function validateDataEntry(){
 	var textArea = document.getElementById("dataEntry").value;
 	var lines = textArea.split("\n");
 	var numOfLines = lines.length;
-	console.log(numOfLines);
 	if(numOfLines > 50) { // validates max 50 lines in textarea
 		alert("Too many (> 50 lines) lines! You have " + numOfLines + " number of lines.");
 		return;
