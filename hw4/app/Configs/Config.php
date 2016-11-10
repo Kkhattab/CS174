@@ -5,9 +5,9 @@ namespace Configs;
 /* 3. Create script that will use this config */ 
 /* 4. Visit the script via url or run php name_of_script.php */
 class Config {
+	const BASE_URL="http://localhost/hw4/";
 	const DBUSER = "root";
 	const DBPASS = "";
 	const DBNAME = "localdb";
 	const DBHOST = "localhost";
-	const BASEURL = "http://localhost/hw4";
 }
