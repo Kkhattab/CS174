@@ -9,11 +9,11 @@ class Landing extends Base {
 		// title from contoller $data["site_title"]
 		$html .= '<h1>' .  $data["site_title"] .'</h1>';
 		$html .= '<h2>Share your data in charts!</h2>';
-		$html .= '<form>';
+		$html .= '<form id="chartForm" onsubmit="event.preventDefault(); return validateDataEntry();">';
 		$html .= '<label for="chartTitle">Chart Title </label>';
-		$html .= '<input type="text" name="c" id="chartTitle"></br></br>';
-		$html .= '<textarea id="dataEntry" rows="' . $data["max_lines"] .'" maxlength="'. $data["max_characters"] .'" placeholder="'. $data["placeholder_text"] .'"></textarea></br>';
-		$html .= '<button type="submit">Share</button>';
+		$html .= '<input type="text" name="chart_title" id="chartTitle" required></br></br>';
+		$html .= '<textarea id="dataEntry" placeholder="'. $data["placeholder_text"] .'" required></textarea></br>';
+		$html .= '<input type="submit" name="share" value="Share">';
 		$html .= '</form>';
 
 		$html .= $this->render_footer($data);

@@ -11,6 +11,7 @@ class Base {
 			<title>' . $html_title . '</title>
 			<link rel="stylesheet" type="text/css" href="public/styles/styles.css" />
 			<script type="text/javascript" src="public/scripts/chart.js"></script>
+			<script type="text/javascript" src="public/scripts/main.js"></script>
 		</head>
 		<body>
 			<div class="wrapper">';
