@@ -9,8 +9,8 @@ class Base {
 		<html>
 		<head>
 			<title>' . $html_title . '</title>
-			<link rel="stylesheet" type="text/css" href="styles/styles.css" />
-			<script type="text/javascript" src="scripts/chart.js" />
+			<link rel="stylesheet" type="text/css" href="public/styles/styles.css" />
+			<script type="text/javascript" src="public/scripts/chart.js"></script>
 		</head>
 		<body>
 			<div class="wrapper">';

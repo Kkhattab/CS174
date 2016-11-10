@@ -13,6 +13,7 @@
  * @param Object (optional) properties override values for any of the
  *      properties listed in the property_defaults variable below
  */
+
  function Chart(chart_id, data)
  {
     var self = this;

@@ -10,6 +10,7 @@ class Landing extends Base {
 		$html .= '<h1>' .  $data["site_title"] .'</h1>';
 
 		$html .= $this->render_footer($data);
+
 		echo $html;
 	}
 }
