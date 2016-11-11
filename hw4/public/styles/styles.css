@@ -13,3 +13,16 @@ h2{
 #dataEntry{
 	position: relative;
 }
+
+div.error {
+    color: red;
+    background-color: pink;
+    border: 1px solid red;
+    border-left: none;
+    border-right: none;
+    max-width: 400px;
+    padding: 3px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
