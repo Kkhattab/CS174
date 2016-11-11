@@ -1,0 +1,18 @@
+001. h1 heading PasteChart
+002. Beneath h1 should be subheading, "Share your data in charts!"
+003. Underneath sub heading text field with label, "Chart Title”
+004. Then a large text area under which is a Share button.
+005. Place holder for the text area should say the allowed format for the data: 
+	The data format should be a comma separated list of values, one per line, up to 50 lines of at most 80 characters, these will represent the points to plot our data. 
+006. The first coordinate should represent a text label, can be numbers but no commas 
+	Example Jan, 600, 5.4
+		Feb, 450, 5.0 
+		March, 551, 4.9
+007. On every row, the first coordinate must be a nonempty string, however, for the remaining coordinates if a value is missing, we represent that with the empty string. For example:
+Aug,,10.1
+008. When user clicks share button your app should check the data matches the format indicated above. 
+009. Write a few unit tests that check the data when being sent server side. 
+010. If error in the data a alert should be displayed. 
+011. If data does match format, the data should be md5 hashed using PHPs hash function. http://php.net/manual/en/function.hash.php and then should be stored in database table. 
+012. Let XXXXXX represent the character in the md5 hash, then the page should draw a page with title and h1 heading “XXXXX Line Graph - PasteChart”. Beneath this should be a line graph with title the user gave and the data provided by user. 
+013.  Define a constant BASE_URL in your config.php script as the url of your website. This page should then have the lines (in p or div or pre or other tags of your choice):
