@@ -40,11 +40,14 @@ class ChartDataRow extends Base {
         return self::query($query);
     }
 
+     
     public function createTable() {
         // Create a table
-        // Hash is the primary key
-        $query = "CREATE TABLE `chart_data` ( "
+        //hash is the primary key 
+       $query = "CREATE TABLE `chart_data` ( "
                 . "`chart_hash` VARCHAR(32) NOT NULL , "
+                . "`order` INT NOT NULL, "
+                . "`title` VARCHAR(80) NOT NULL , "
                 . "`label` VARCHAR(80) NOT NULL , "
                 . "`value1` DOUBLE , "
                 . "`value2` DOUBLE , "
