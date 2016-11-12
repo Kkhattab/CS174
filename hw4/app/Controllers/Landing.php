@@ -3,7 +3,26 @@ namespace Controllers;
 use Views as Views;
 
 class Landing extends Base {
-    
+
+    function get_chart_data($data) {
+        //explod is opposit of implode, basically separate lines by new spaces
+        $lines = explode("\n", $data);
+        $parsed = array();
+        
+        foreach ($lines as $line) {
+            //separate the line by comma to get each point 
+            $values = explode(",", $line);
+           
+            $parsed []= array(
+                trim($values[0]), // label
+                empty(trim($values[1])) ? null : floatval(trim($values[1])), // value 1 (the number we entered)
+                empty(trim($values[2])) ? null : floatval(trim($values[2])) // value 2 ( the number we entered for 2nd val)
+             );
+         }
+        return $parsed;
+    }
+
+
     function validate_chart_data($data) {
     	//explode — Split a string by string
         $lines = explode("\n", $data);
@@ -50,9 +69,16 @@ class Landing extends Base {
         if (isset($_POST["sent"])):
             $validation_result = $this->validate_chart_data($_POST['dataEntry']);
             if ($validation_result === true) {
-                // save to database
-                
-                $validation_result = "";
+                // save to database 
+                $chartdata = new \Models\ChartDataRow();
+                $result = $chartdata->save($_POST['title'], $this->get_chart_data($_POST['dataEntry']));
+               // redirect to the chart page
+                if($result):
+                     header("Location: ?c=chart&a=show&arg1=LineGraph&arg2=".hash('md5', $_POST['title']));
+                     return;
+                else:
+                     echo "db error: ".mysql_error();
+                endif;
             }
         endif;
         

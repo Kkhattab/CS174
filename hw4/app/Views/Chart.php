@@ -1,8 +1,10 @@
 <?php
 namespace Views;
 
-class Landing extends Base {
+class Chart extends Base {
+	
 	function render($data){
+		
 		$html = "";
 		$html .= $this->render_header($data);
 		
@@ -10,7 +12,6 @@ class Landing extends Base {
 		$html .= '<h1>' .  $data["site_title"] .'</h1>';
 	
 		$html .= $this->render_footer($data);
-
 		echo $html;
 	}
 }

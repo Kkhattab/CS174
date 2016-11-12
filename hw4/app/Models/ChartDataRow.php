@@ -29,13 +29,17 @@ class ChartDataRow extends Base {
         $md5 = hash("md5", $title);
         $title = self::escape($title);
         $sql_rows = array();
+        $i = 0;
+        
         foreach ($data as $row) {
             list($label, $first, $second) = $row;
             $label = self::escape($label);
             $first = floatval($first);
             $second = floatval($second);
-            $sql_rows []= "('$md5','$title','$label',$sin,$cos)";
+            $sql_rows []= "('$md5',$i,'$title','$label',$first,$second)";
+            $i++;
         }
+
         $query = "INSERT INTO `chart_data` VALUES ".implode(",", $sql_rows).";";
         return self::query($query);
     }
