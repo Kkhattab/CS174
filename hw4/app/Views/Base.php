@@ -1,7 +1,10 @@
 <?php
 namespace Views;
+
 class Base {
+	
 	public function render(){}
+	
 	public function render_header($data){
 		$html_title = $data["site_title"] . (isset( $data["page_title"] ) ?  " - " . $data["page_title"] : "");
 		$html = '
@@ -17,6 +20,7 @@ class Base {
 			<div class="wrapper">';
 		return $html;
 	}
+	
 	public function render_footer($data){
 
 		$html = '</div></body></html>';

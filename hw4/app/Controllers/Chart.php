@@ -1,8 +1,7 @@
 <?php
 namespace Controllers;
-
 class Chart extends Base {
-   
+    
     // this function restructures the data retrieved from database
     // this is the form in the database:
     // array(
@@ -16,7 +15,7 @@ class Chart extends Base {
     //      etc...
     // )
     
-    public function get_data_series($original, $index) {
+    protected function get_data_series($original, $index) {
         $parsed = array();
         foreach ($original as $row) {
             $parsed[$row[0]] = $row[$index];
@@ -34,12 +33,45 @@ class Chart extends Base {
             header("Location: ?c=landing");
             return;
         }
+        $data['hash'] = $hash;
+        $type = $_GET['arg1'];
+        if ($type == 'LineGraph' || $type == 'PointGraph' || $type == 'Histogram') {
+            $data['type'] = $type;
+            $this->renderPage($data);
+        }
+        elseif ($type == 'json') {
+            header('Content-Type: application/json');
+            echo $this->get_data_series($data['data'], 1);
+        }
+        elseif ($type == 'jsonp') {
+            header('Content-Type: application/javascript');
+            $callback = empty($_GET['arg3']) ? 'alert' : $_GET['arg3'];
+            echo $callback . '(';
+            echo $this->get_data_series($data['data'], 1);
+            echo ');\n';
+        }
+    }
+    
+    // if an html page is requested:
+    function renderPage($data) {
         $view = new \Views\Chart();
+        // link url base
+        $link_url = \Configs\Config::BASE_URL . '?c=chart&amp;a=show&amp;arg2=' . $data["hash"] . '&amp;arg1=';
+        $share_links = array(
+            'LineGraph' => $link_url . 'LineGraph',
+            'PointGraph' => $link_url . 'PointGraph',
+            'Histogram' => $link_url . 'Histogram',
+            'xml' => $link_url . 'xml',
+            'json' => $link_url . 'json',
+            'jsonp' => $link_url . 'jsonp'
+        );
         // get the page title and pass it into the current view 
         $template_vars = array(
-            "site_title" => "“$hash Line Graph - PasteChart”",
+            "site_title" => $data['hash'] . " Line Graph - PasteChart",
             "title" => $data['title'],
-            "json" => $this->get_data_series($data['data'], 1)
+            "json" => $this->get_data_series($data['data'], 1),
+            "links" => $share_links,
+            "type" => $data["type"]
         );
         $view->render($template_vars);
     }
