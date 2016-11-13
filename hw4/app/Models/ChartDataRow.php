@@ -27,20 +27,7 @@ class ChartDataRow extends Base {
 
     public function save($title, $data) {
         $md5 = hash("md5", $title);
-        $title = self::escape($title);
-        $sql_rows = array();
-        $i = 0;
-        
-        foreach ($data as $row) {
-            list($label, $first, $second) = $row;
-            $label = self::escape($label);
-            $first = floatval($first);
-            $second = floatval($second);
-            $sql_rows []= "('$md5',$i,'$title','$label',$first,$second)";
-            $i++;
-        }
-
-        $query = "INSERT INTO `chart_data` VALUES ".implode(",", $sql_rows).";";
+        $query = "INSERT INTO `chart_data` VALUES (\"$md5\", \"$title\", \"$data\") ;";
         return self::query($query);
     }
 
@@ -50,30 +37,17 @@ class ChartDataRow extends Base {
         //hash is the primary key 
        $query = "CREATE TABLE `chart_data` ( "
                 . "`chart_hash` VARCHAR(32) NOT NULL , "
-                . "`order` INT NOT NULL, "
                 . "`title` VARCHAR(80) NOT NULL , "
-                . "`label` VARCHAR(80) NOT NULL , "
-                . "`value1` DOUBLE , "
-                . "`value2` DOUBLE , "
-                . "PRIMARY KEY (`chart_hash`(32),`label`(80))) ENGINE = InnoDB;";
+                . "`data` TEXT , "
+                . "PRIMARY KEY (`chart_hash`(32),`title`(80))) ENGINE = InnoDB;";
         return self::query($query);
     }
     
     public function insertSampleData() {
-         $rows = array();
-        // I want a sine and cosine for data points
-        $rows = array();
-        //md5 is the type of hasing, and the second string is the string that is getting hashed
-        $md5 = hash("md5", "Sine & Cosine");
-        for ($x = 0; $x < 10; $x++) {
-            $v = $x * 1.2;
-            $sin = sin($v);
-            $cos = cos($v);
-            $rows []= "('$md5','$x','Sine & Cosine','$v',$sin,$cos)";
-        }
-        // implode joins strings 
-        //implode(",", array("1","2","3")) will return "1,2,3"
-        $query = "INSERT INTO `chart_data` VALUES ".implode(",", $rows).";";
+        $title = "Test Data 1";
+        $md5 = hash("md5", $title);
+        $data = "Jan,1,1\nFeb,2,2\n";
+        $query = "INSERT INTO `chart_data` VALUES (\"$md5\", \"$title\", \"$data\");";
         return self::query($query);
     }
 }
