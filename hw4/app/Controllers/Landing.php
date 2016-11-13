@@ -57,10 +57,11 @@ class Landing extends Base {
             if ($validation_result === true) {
                 // save to database 
                 $chartdata = new \Models\ChartDataRow();
-                $result = $chartdata->save($_POST['chart_title'], $this->get_chart_data($_POST['dataEntry']));
+                $md5 = mb_substr(hash("md5", $_POST['chart_title']), 0, 5);
+                $result = $chartdata->save($md5, $_POST['chart_title'], $this->get_chart_data($_POST['dataEntry']));
                // redirect to the chart page
                 if($result):
-                     header("Location: ?c=chart&a=show&arg1=LineGraph&arg2=".hash('md5', $_POST['title']));
+                     header("Location: ?c=chart&a=show&arg1=LineGraph&arg2=".$md5);
                      return;
                 else:
                      echo "db error: ".mysql_error();

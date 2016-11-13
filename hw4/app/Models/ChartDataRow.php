@@ -6,7 +6,7 @@ class ChartDataRow extends Base {
      public function load_data($hash) {
     
         $hash = self::escape($hash);
-        $query = "SELECT * FROM chart_data WHERE chart_hash = '$hash' ORDER BY `order`";
+        $query = "SELECT * FROM chart_data WHERE chart_hash = '$hash';";
         $result = self::query($query);
         
         if (mysql_num_rows($result) == 0) {
@@ -25,8 +25,8 @@ class ChartDataRow extends Base {
         return array("title" => $title, "data" => $data);
     }
 
-    public function save($title, $data) {
-        $md5 = hash("md5", $title);
+    public function save($md5, $title, $data) {
+        $title = self::escape($title);
         $query = "INSERT INTO `chart_data` VALUES (\"$md5\", \"$title\", \"$data\") ;";
         return self::query($query);
     }
