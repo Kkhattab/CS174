@@ -14,12 +14,12 @@ class ChartDataRow extends Base {
         }
         
         $title = null;
-        $data = array();
+        $data = "";
         while ($row = mysql_fetch_assoc($result)) {
             if ($title === null) {
                 $title = $row['title'];
             }
-            $data[] = array($row['label'], $row['value1'], $row['value2']);
+            $data = $row['data'];
         }
         
         return array("title" => $title, "data" => $data);
