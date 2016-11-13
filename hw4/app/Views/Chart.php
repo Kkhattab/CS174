@@ -18,7 +18,7 @@ class Chart extends Base {
         header('Content-Type: text/xml');
         echo $xml;
     }
-
+    //view sample data: http://localhost/hw4/?c=chart&a=show&arg2=13665484cd59ac94b6caecd80e26bce5&arg1=LineGraph (replace hash with your own chart hash into url)
     function render($data) {
         
         $html = "";

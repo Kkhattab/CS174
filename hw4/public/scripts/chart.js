@@ -71,6 +71,11 @@
      */
      p.draw = function()
      {
+        // move these here, so they run only once
+        self.initMinMaxRange();
+        self.renderAxes();
+        
+        // call draw function
         self['draw' + self.type]();
     }
     /**
@@ -81,20 +86,27 @@
      {
         self.min_value = null;
         self.max_value = null;
+        self.series_count = null;
         self.start;
         self.end;
         var key;
         for (key in data) {
-            if (self.min_value === null) {
-                self.min_value = data[key];
-                self.max_value = data[key];
-                self.start = key;
-            }
-            if (data[key] < self.min_value) {
-                self.min_value = data[key];
-            }
-            if (data[key] > self.max_value) {
-                self.max_value = data[key];
+            for (var i = 0; i < data[key].length; i++) {
+                if (self.series_count == null || i + 1 > self.series_count) {
+                    // how many data series do we have?
+                    self.series_count = i + 1;
+                }
+                if (self.min_value === null) {
+                    self.min_value = data[key][i];
+                    self.max_value = data[key][i];
+                    self.start = key;
+                }
+                if (data[key][i] < self.min_value) {
+                    self.min_value = data[key][i];
+                }
+                if (data[key][i] > self.max_value) {
+                    self.max_value = data[key][i];
+                }
             }
         }
         self.end = key;
@@ -180,8 +192,6 @@
      */
     p.drawHistogram = function() 
     {
-        self.initMinMaxRange();
-        self.renderAxes();
         var dx = (self.width - 2*self.x_padding) /
         (Object.keys(data).length - 1);
         var c = context;
@@ -193,10 +203,14 @@
         // this is the bottom of the chart:
         var ground = self.tick_length + height;
         for (var key in data) {
-            var y = self.tick_length + height *
-                (1 - (data[key] - self.min_value)/self.range);
-            // draw line from ground to y value
-            self.plotLine(x + 2.5, ground, x+2.5, y);
+            for (var i = 0; i < data[key].length; i++) {
+                var y = self.tick_length + height *
+                    (1 - (data[key][i] - self.min_value)/self.range);
+                // draw line from ground to y value
+                // offset x with 2.5 (half of line width)
+                // + 7.5 * data series id -> data series won't overlap
+                self.plotLine(x + 2.5 + 7.5 * i, ground, x + 2.5 + 7.5 * i, y);
+            }
             x += dx;
         }
     }
@@ -206,8 +220,6 @@
      */
      p.drawPointGraph = function()
      {
-        self.initMinMaxRange();
-        self.renderAxes();
         var dx = (self.width - 2*self.x_padding) /
         (Object.keys(data).length - 1);
         var c = context;
@@ -217,9 +229,12 @@
         var height = self.height - self.y_padding - self.tick_length;
         var x = self.x_padding;
         for (key in data) {
-            y = self.tick_length + height *
-            (1 - (data[key] - self.min_value)/self.range);
-            self.plotPoint(x, y);
+            for(var i = 0; i < data[key].length; i++) {
+                if(data[key][i] === null) continue;
+                y = self.tick_length + height *
+                    (1 - (data[key][i] - self.min_value)/self.range);
+                self.plotPoint(x, y);
+            }
             x += dx;
         }
     }
@@ -231,19 +246,24 @@
      {
         self.drawPointGraph();
         var c = context;
-        c.beginPath();
         var x = self.x_padding;
-        var dx =  (self.width - 2*self.x_padding) /
-        (Object.keys(data).length - 1);
+        var dx = (self.width - 2*self.x_padding) /
+            (Object.keys(data).length - 1);
         var height = self.height - self.y_padding  - self.tick_length;
-        c.moveTo(x, self.tick_length + height * (1 -
-            (data[self.start] - self.min_value)/self.range));
-        for (key in data) {
-            y = self.tick_length + height * 
-            (1 - (data[key] - self.min_value)/self.range);
-            c.lineTo(x, y);
-            x += dx;
+        for (var i = 0; i < self.series_count; i++) {
+            x = self.x_padding;
+            console.log("plot", i, "series");
+            c.moveTo(x, self.tick_length + height * (1 -
+                (data[self.start][i] - self.min_value)/self.range));
+            c.beginPath();
+            for (key in data) {
+                y = self.tick_length + height * 
+                    (1 - (data[key][i] - self.min_value)/self.range);
+                c.lineTo(x, y);
+                console.log(x,y);
+                x += dx;
+            }
+            c.stroke();
         }
-        c.stroke();
     }
 }

@@ -1,5 +1,6 @@
 <?php
 namespace Controllers;
+
 class Chart extends Base {
     
     // this function restructures the data retrieved from database
@@ -15,11 +16,15 @@ class Chart extends Base {
     //      etc...
     // )
     
-    protected function get_data_series($original, $index) {
+    protected function get_data_series($original) {
         $parsed = array();
+        
         foreach ($original as $row) {
-            $parsed[$row[0]] = $row[$index];
+
+            // the first element is label, others are points
+            $parsed[$row[0]] = array_slice($row, 1);
         }
+        
         return json_encode($parsed);
     }
     
@@ -42,13 +47,13 @@ class Chart extends Base {
         }
         elseif ($type == 'json') {
             header('Content-Type: application/json');
-            echo $this->get_data_series($data['data'], 1);
+            echo $this->get_data_series($data['data']);
         }
         elseif ($type == 'jsonp') {
             header('Content-Type: application/javascript');
             $callback = empty($_GET['arg3']) ? 'alert' : $_GET['arg3'];
             echo $callback . '(';
-            echo $this->get_data_series($data['data'], 1);
+            echo $this->get_data_series($data['data']);
             echo ');\n';
         }
     }
