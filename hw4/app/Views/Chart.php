@@ -10,7 +10,12 @@ class Chart extends Base {
 		
 		// title from contoller $data["site_title"]
 		$html .= '<h1>' .  $data["site_title"] .'</h1>';
-	
+		$html .= '<div class="chart" id="graph_node"></div>';
+		$html .= '<script>
+                    var graph = new Chart("graph_node", 
+                    '.$data['json'].', 
+                    {"title":"'.$data['title'].'"}); graph.draw();</script>';
+
 		$html .= $this->render_footer($data);
 		echo $html;
 	}
