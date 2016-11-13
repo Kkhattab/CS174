@@ -65,10 +65,11 @@ class ChartDataRow extends Base {
         $rows = array();
         //md5 is the type of hasing, and the second string is the string that is getting hashed
         $md5 = hash("md5", "Sine & Cosine");
-        for ($x = 0; $x < 10; $x++) {
-            $v = $x * 1.2;
-            $sin = sin($v);
-            $cos = cos($v);
+        for ($x = 0; $x < 20; $x++) {
+            //better looking sine graph
+            $v = $x * 7 / 20;
+            $sin = sin($v) / 2.0 + 0.5;
+            $cos = cos($v) / 2.0 + 0.5;
             $rows []= "('$md5','$x','Sine & Cosine','$v',$sin,$cos)";
         }
         // implode joins strings 
