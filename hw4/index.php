@@ -11,6 +11,7 @@ switch($controller):
 	break;
 	case "chart" :
 		$controller = new Controllers\Chart();
+	break;
 	default :
 	    //Output a message and terminate the current script
 		die("Page not found.");

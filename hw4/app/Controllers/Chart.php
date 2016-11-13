@@ -5,6 +5,7 @@ class Chart extends Base {
   
     function index() {
         $hash = $_GET['arg2'];
+        $chart_type = $_GET['arg1'];
         $chartdata = new \Models\ChartDataRow();
         $data = $chartdata->load_data($hash);
         
@@ -20,7 +21,7 @@ class Chart extends Base {
         // get the page title and pass it into the current view 
         
         $template_vars = array(
-            "site_title" => "“$hash Line Graph - PasteChart”"
+            "site_title" => "$hash $chart_type - PasteChart"
         );
         
         $view->render($template_vars);
