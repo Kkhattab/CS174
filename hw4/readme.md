@@ -30,6 +30,12 @@ const BASEURL = "http://localhost/hw3";
 **Be sure to edit Base URL if needed to match where our HW4 folder is located.**
 
 
+
+##Unit Tests 
+
+1. Run tests by visiting this url http://localhost//hw4/test.php?test=datavalidatortest
+
+
 #Contact Us
 ---
 
