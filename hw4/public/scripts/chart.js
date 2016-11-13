@@ -163,6 +163,44 @@
             x += dx;
         }
     }
+    
+    p.plotLine = function(x, y, x2, y2) {
+        var c = context;
+        c.beginPath();
+        c.lineWidth = 5;
+        c.moveTo(x, y);
+        c.lineTo(x2, y2);
+        c.stroke();
+    }
+    
+    /**
+     * 
+     * Draws a histogram
+     * based on drawPointGraph
+     */
+    p.drawHistogram = function() 
+    {
+        self.initMinMaxRange();
+        self.renderAxes();
+        var dx = (self.width - 2*self.x_padding) /
+        (Object.keys(data).length - 1);
+        var c = context;
+        c.lineWidth = self.line_width;
+        c.strokeStyle = self.data_color;
+        c.fillStyle = self.data_color;
+        var height = self.height - self.y_padding - self.tick_length;
+        var x = self.x_padding;
+        // this is the bottom of the chart:
+        var ground = self.tick_length + height;
+        for (var key in data) {
+            var y = self.tick_length + height *
+                (1 - (data[key] - self.min_value)/self.range);
+            // draw line from ground to y value
+            self.plotLine(x + 2.5, ground, x+2.5, y);
+            x += dx;
+        }
+    }
+    
     /**
      * Draws a chart consisting of just x-y plots of points in data.
      */

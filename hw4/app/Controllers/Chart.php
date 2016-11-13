@@ -35,7 +35,8 @@ class Chart extends Base {
         }
         $data['hash'] = $hash;
         $type = $_GET['arg1'];
-        if ($type == 'LineGraph' || $type == 'PointGraph' || $type == 'Histogram') {
+       
+        if ($type == 'LineGraph' || $type == 'PointGraph' || $type == 'Histogram' || $type == 'xml') {
             $data['type'] = $type;
             $this->renderPage($data);
         }
@@ -71,8 +72,15 @@ class Chart extends Base {
             "title" => $data['title'],
             "json" => $this->get_data_series($data['data'], 1),
             "links" => $share_links,
-            "type" => $data["type"]
+            "type" => $data["type"],
+            "hash" => $data["hash"],
+            "data" => $data["data"]
         );
-        $view->render($template_vars);
+        
+        if ($data['type'] == 'xml') {
+             $view->render_xml($template_vars);
+        } else {
+             $view->render($template_vars);
+        }
     }
 }
