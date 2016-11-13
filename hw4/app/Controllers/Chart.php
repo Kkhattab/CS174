@@ -8,7 +8,9 @@ class Chart extends Base {
         $chart_type = $_GET['arg1'];
         $chartdata = new \Models\ChartDataRow();
         $data = $chartdata->load_data($hash);
-        
+        $title = $data["title"];
+        $body = $data["data"];
+
         if (!$data) {
             // chart not found
             // redirect to landing page
@@ -21,7 +23,9 @@ class Chart extends Base {
         // get the page title and pass it into the current view 
         
         $template_vars = array(
-            "site_title" => "$hash $chart_type - PasteChart"
+            "site_title" => "$hash $chart_type - PasteChart",
+            "chart_title" => $title,
+            "chart_data" => $body
         );
         
         $view->render($template_vars);
