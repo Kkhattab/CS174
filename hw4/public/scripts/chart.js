@@ -14,6 +14,15 @@
  *      properties listed in the property_defaults variable below
  */
 
+ // chart_id is the name of the chart
+ // 
+ // Originaly data was an object like this:
+ // { label1: value1, label2: value2 ... }
+ // now it is like this:
+ // { 
+ //     label1: [value1ForPlot1, value1ForPlot2], 
+ //     label2: [value2ForPlot1, value2ForPlot2]
+ // }
  function Chart(chart_id, data)
  {
     var self = this;
@@ -71,32 +80,48 @@
      */
      p.draw = function()
      {
-        // move these here, so they run only once
-        self.initMinMaxRange();
-        self.renderAxes();
+        // move these two functions here, so they run only once
+        // they were originally in drawXXX functions
+        self.initMinMaxRange(); // walks through all data and determines
+                                // min and max values, and hence
+                                // the axis' min and max value and range
+        self.renderAxes();      // draws the axes, and labels
         
-        // call draw function
+        // call specific draw function according to type
         self['draw' + self.type]();
     }
     /**
      * Used to store in fields the min and max y values as well as the start
      * and end x keys, and the range = max_y - min_y
+     * 
+     * It is now supporting the new data object format, so it can calculate
+     * min_y and max_y on any number of data series
      */
      p.initMinMaxRange = function()
      {
         self.min_value = null;
         self.max_value = null;
+        // it also counts the number of data series provided
         self.series_count = null;
-        self.start;
-        self.end;
+        self.start; // label for start
+        self.end; // label for end
         var key;
+        // iterates through labels
         for (key in data) {
+            // iterates through the values for that label
+            // ( plot1value, plot2value ...
             for (var i = 0; i < data[key].length; i++) {
                 if (self.series_count == null || i + 1 > self.series_count) {
-                    // how many data series do we have?
+                    // some labels may not contain values for all data series
+                    // so we this will be the maximum of how many values stored at a label
                     self.series_count = i + 1;
                 }
+                // if it is not a number than skip it
+                // if it is a number
                 if (!isNaN(data[key][i])) {
+                    // isNaN checks wheter the value can be converted into
+                    // a number. however this is still true for numeric strings
+                    // convert them to numbers
                     data[key][i] = parseFloat(data[key][i]);
                     if (self.min_value === null) {
                         self.min_value = data[key][i];
@@ -113,7 +138,8 @@
             }
         }
         self.end = key;
-        console.log(self.min_value, self.max_value, self.start, self.end);
+        // testing
+        // console.log(self.min_value, self.max_value, self.start, self.end);
         self.range = self.max_value - self.min_value;
     }
     /**
@@ -180,6 +206,9 @@
         }
     }
     
+    // This is a helper function
+    // which draws a line from (x, y)
+    // to (x2, y2)
     p.plotLine = function(x, y, x2, y2) {
         var c = context;
         c.beginPath();
@@ -190,24 +219,31 @@
     }
     
     /**
-     * 
      * Draws a histogram
-     * based on drawPointGraph
+     * 
      */
     p.drawHistogram = function() 
     {
+        // calculating space between labels
         var dx = (self.width - 2*self.x_padding) /
-        (Object.keys(data).length - 1);
+            (Object.keys(data).length - 1);
+        // preparing canvas context up canvas
         var c = context;
         c.lineWidth = self.line_width;
         c.strokeStyle = self.data_color;
         c.fillStyle = self.data_color;
-        var height = self.height - self.y_padding - self.tick_length;
-        var x = self.x_padding;
-        // this is the bottom of the chart:
-        var ground = self.tick_length + height;
+        
+        // initial values according to space which will be utilized 
+        // (canvas minus labels and axis)
+        var height = self.height - self.y_padding - self.tick_length; // height
+        var x = self.x_padding; // leftmost x coordinate
+        var ground = self.tick_length + height; // bottom most y value
+        
+        // iterate through labels
         for (var key in data) {
+            // iterate through plots
             for (var i = 0; i < data[key].length; i++) {
+                // for each data point calculate its y coordinate
                 var y = self.tick_length + height *
                     (1 - (data[key][i] - self.min_value)/self.range);
                 // draw line from ground to y value
@@ -215,6 +251,7 @@
                 // + 7.5 * data series id -> data series won't overlap
                 self.plotLine(x + 2.5 + 7.5 * i, ground, x + 2.5 + 7.5 * i, y);
             }
+            // the next bars begin at the next level
             x += dx;
         }
     }
@@ -232,12 +269,14 @@
         c.fillStyle = self.data_color;
         var height = self.height - self.y_padding - self.tick_length;
         var x = self.x_padding;
+        // iterate through labels
         for (key in data) {
+            // iterate through plots
             for(var i = 0; i < data[key].length; i++) {
                 if(data[key][i] == null) continue;
                 y = self.tick_length + height *
                     (1 - (data[key][i] - self.min_value)/self.range);
-                console.log("plot", key, i, x, y);
+                // console.log("plot", key, i, x, y);
                 self.plotPoint(x, y);
             }
             x += dx;
@@ -255,9 +294,13 @@
         var dx = (self.width - 2*self.x_padding) /
             (Object.keys(data).length - 1);
         var height = self.height - self.y_padding  - self.tick_length;
+        // only graph which we need to draw
+        // something coherent (a line) for each plot
+        // so the outside loop iterates through data series
         for (var i = 0; i < self.series_count; i++) {
+            // and then draws them the same way it did before:
             x = self.x_padding;
-            console.log("plot", i, "series");
+            // console.log("plot", i, "series");
             c.moveTo(x, self.tick_length + height * (1 -
                 (data[self.start][i] - self.min_value)/self.range));
             c.beginPath();
@@ -265,7 +308,7 @@
                 y = self.tick_length + height * 
                     (1 - (data[key][i] - self.min_value)/self.range);
                 c.lineTo(x, y);
-                console.log(x,y);
+                // console.log(x,y);
                 x += dx;
             }
             c.stroke();
