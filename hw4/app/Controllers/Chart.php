@@ -73,7 +73,7 @@ class Chart extends Base {
         );
         // get the page title and pass it into the current view 
         $template_vars = array(
-            "site_title" => $data['hash'] . " Line Graph - PasteChart",
+            "site_title" => $data['hash'] . " " . $data['type'] . " - PasteChart",
             "title" => $data['title'],
             "json" => $this->get_data_series($data['data'], 1),
             "links" => $share_links,

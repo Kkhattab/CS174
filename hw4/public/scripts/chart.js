@@ -96,20 +96,24 @@
                     // how many data series do we have?
                     self.series_count = i + 1;
                 }
-                if (self.min_value === null) {
-                    self.min_value = data[key][i];
-                    self.max_value = data[key][i];
-                    self.start = key;
-                }
-                if (data[key][i] < self.min_value) {
-                    self.min_value = data[key][i];
-                }
-                if (data[key][i] > self.max_value) {
-                    self.max_value = data[key][i];
+                if (!isNaN(data[key][i])) {
+                    data[key][i] = parseFloat(data[key][i]);
+                    if (self.min_value === null) {
+                        self.min_value = data[key][i];
+                        self.max_value = data[key][i];
+                        self.start = key;
+                    }
+                    if (data[key][i] < self.min_value) {
+                        self.min_value = data[key][i];
+                    }
+                    if (data[key][i] > self.max_value) {
+                        self.max_value = data[key][i];
+                    }
                 }
             }
         }
         self.end = key;
+        console.log(self.min_value, self.max_value, self.start, self.end);
         self.range = self.max_value - self.min_value;
     }
     /**
@@ -230,9 +234,10 @@
         var x = self.x_padding;
         for (key in data) {
             for(var i = 0; i < data[key].length; i++) {
-                if(data[key][i] === null) continue;
+                if(data[key][i] == null) continue;
                 y = self.tick_length + height *
                     (1 - (data[key][i] - self.min_value)/self.range);
+                console.log("plot", key, i, x, y);
                 self.plotPoint(x, y);
             }
             x += dx;
