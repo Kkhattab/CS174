@@ -34,8 +34,9 @@ class ChartDataRow extends Base {
         foreach ($data as $row) {
             list($label, $first, $second) = $row;
             $label = self::escape($label);
-            $first = floatval($first);
-            $second = floatval($second);
+            //allow null values to be saved!
+            $first = empty(trim($first)) ? 'NULL' : floatval($first);
+            $second = empty(trim($second)) ? 'NULL' : floatval($second);
             $sql_rows []= "('$md5',$i,'$title','$label',$first,$second)";
             $i++;
         }
