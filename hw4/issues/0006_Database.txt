@@ -1,0 +1,2 @@
+Create schema and connect to database for usage.
+Assigned to Kareem

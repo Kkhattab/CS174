@@ -1,0 +1,2 @@
+Create chart view and controller for redirect location.
+Assigned to Kevin

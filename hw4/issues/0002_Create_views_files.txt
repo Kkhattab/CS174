@@ -1,0 +1,2 @@
+Create views and controllers for landing page and chart pages as specified by assignment requirements.
+Assigned to Kevin

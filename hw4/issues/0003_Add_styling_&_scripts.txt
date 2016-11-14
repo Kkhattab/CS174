@@ -1,0 +1,2 @@
+Need to source the styling and scripts. Copy over chart.js and create a styling page for css.
+Assigned to Kevin

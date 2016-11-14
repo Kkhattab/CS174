@@ -1,0 +1,2 @@
+Make initial full-stack connection, including connecting and successfully inserting and querying to/from database. Redirect to chart page, also include md5 hashing and saving as tuple.
+Assigned Kareem & Kevin
