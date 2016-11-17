@@ -9,9 +9,10 @@ class Chart extends Base {
         $xml .= '<chart title="'. htmlentities($data['title']) .'" hash="'.$data['hash'].'">'."\n";
         
         foreach ($data["data"] as $label_and_values) {
-            $xml .= '<point label="'.$label_and_values[0].'">'."\n";
-            $xml .= '<value>'.$label_and_values[1].'</value>'."\n";
-            $xml .= '<value>'.$label_and_values[2].'</value>'."\n";
+            $values = explode(",", $label_and_values);
+            $xml .= '<point label="'.$values[0].'">'."\n";
+            $xml .= '<value>'.$values[1].'</value>'."\n";
+            $xml .= '<value>'.$values[2].'</value>'."\n";
             $xml .= '</point>'."\n";
         }
         $xml .= '</chart>'."\n";
