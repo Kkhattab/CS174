@@ -5,10 +5,13 @@ namespace Views;
 class Chart extends Base {
     
     function render_xml($data) {
-       
+
+        $rows = explode("\r\n",$data["data"]);
+
         $xml = '<?xml version="1.0" encoding="UTF-8"?>'."\n";
         $xml .= '<chart title="'. htmlentities($data['title']) .'" hash="'.$data['hash'].'">'."\n";
-        foreach ($data['data'] as $label_and_values) {
+        
+        foreach ($rows as $label_and_values) {
             $xml .= '<point label="'.$label_and_values[0].'">'."\n";
             $xml .= '<value>'.$label_and_values[1].'</value>'."\n";
             $xml .= '<value>'.$label_and_values[2].'</value>'."\n";
