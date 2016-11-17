@@ -17,13 +17,7 @@ class Chart extends Base {
     // )
     
     protected function get_data_series($original) {
-        $parsed = array();
-        
-        foreach ($original as $row) {
-
-            // the first element is label, others are points
-            $parsed[$row[0]] = array_slice($row, 1);
-        }
+        $parsed = explode("\r\n",$original);
         
         return json_encode($parsed);
     }
@@ -32,6 +26,8 @@ class Chart extends Base {
         $hash = $_GET['arg2'];
         $chartdata = new \Models\ChartDataRow();
         $data = $chartdata->load_data($hash);
+        $title = $data["title"];
+        $body = $data["data"];
         if (!$data) {
             // chart not found
             // redirect to landing page
@@ -62,14 +58,14 @@ class Chart extends Base {
     function renderPage($data) {
         $view = new \Views\Chart();
         // link url base
-        $link_url = \Configs\Config::BASE_URL . '?c=chart&amp;a=show&amp;arg2=' . $data["hash"] . '&amp;arg1=';
+        $link_url = \Configs\Config::BASE_URL . '?c=chart&amp;a=show&amp;arg1=';
         $share_links = array(
-            'LineGraph' => $link_url . 'LineGraph',
-            'PointGraph' => $link_url . 'PointGraph',
-            'Histogram' => $link_url . 'Histogram',
-            'xml' => $link_url . 'xml',
-            'json' => $link_url . 'json',
-            'jsonp' => $link_url . 'jsonp'
+            'LineGraph' => $link_url . 'LineGraph&amp;arg2=' . $data["hash"],
+            'PointGraph' => $link_url . 'PointGraph&amp;arg2=' . $data["hash"],
+            'Histogram' => $link_url . 'Histogram&amp;arg2=' . $data["hash"],
+            'xml' => $link_url . 'xml&amp;arg2=' . $data["hash"],
+            'json' => $link_url . 'json&amp;arg2=' . $data["hash"],
+            'jsonp' => $link_url . 'jsonp&amp;arg2=' . $data["hash"]
         );
         // get the page title and pass it into the current view 
         $template_vars = array(

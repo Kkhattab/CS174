@@ -22,10 +22,11 @@ class CreateDB extends Base {
         // CREATE DATABASE
         $sql = "CREATE DATABASE " . Config::DBNAME;
         if(mysqli_query($connection, $sql)){
+            mysqli_set_charset($connection, "utf8");
             echo "Database created successfully.";
         } else {
             echo "Error initializing database: " . mysqli_error($connection);
-        }     
+        } 
 
         // List all models:
         // [as array(table name, object)]

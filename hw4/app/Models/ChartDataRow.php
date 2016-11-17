@@ -3,25 +3,22 @@ namespace Models;
 
 class ChartDataRow extends Base {
     
-     public function load_data($hash) {
+    public function load_data($hash) {
     
-        $hash = self::escape($hash);
-        $query = "SELECT * FROM chart_data WHERE chart_hash = '$hash';";
+        $query = "SELECT * FROM chart_data WHERE md5 = '$hash';";
         $result = self::query($query);
         
         if (mysqli_num_rows($result) == 0) {
             return false;
         }
-        
-        $title = null;
+
+        $title = "";
         $data = "";
         while ($row = mysqli_fetch_assoc($result)) {
-            if ($title === null) {
-                $title = $row['title'];
-            }
+            $title = $row['title'];
             $data = $row['data'];
         }
-        
+
         return array("title" => $title, "data" => $data);
     }
 
@@ -36,10 +33,10 @@ class ChartDataRow extends Base {
         // Create a table
         //hash is the primary key 
        $query = "CREATE TABLE `chart_data` ( "
-                . "`md5` VARCHAR(5) NOT NULL , "
+                . "`md5` VARCHAR(32) NOT NULL , "
                 . "`title` VARCHAR(80) NOT NULL , "
                 . "`data` TEXT , "
-                . "PRIMARY KEY (`md5`(5))) ENGINE = InnoDB;";
+                . "PRIMARY KEY (`md5`(32))) ENGINE = InnoDB;";
         return self::query($query);
     }
     
