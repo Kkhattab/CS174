@@ -17,8 +17,12 @@ class Chart extends Base {
     // )
     
     protected function get_data_series($original) {
-        $parsed = explode("\r\n",$original);
-        
+        $parsed = array();
+        $rows = explode("\r\n",$original);
+        foreach($rows as $row){
+            $values = explode(',',$row);
+            $parsed[$values[0]] = $values[1] .','. $values[2];
+        }
         return json_encode($parsed);
     }
     
