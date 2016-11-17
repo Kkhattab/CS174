@@ -5,21 +5,7 @@ use Views as Views;
 class Landing extends Base {
 
     function get_chart_data($data) {
-        //explod is opposit of implode, basically separate lines by new spaces
-        $lines = explode("\n", $data);
-        $parsed = array();
-        
-        foreach ($lines as $line) {
-            //separate the line by comma to get each point 
-            $values = explode(",", $line);
-           
-            $parsed []= array(
-                trim($values[0]), // label
-                empty(trim($values[1])) ? null : floatval(trim($values[1])), // value 1 (the number we entered)
-                empty(trim($values[2])) ? null : floatval(trim($values[2])) // value 2 ( the number we entered for 2nd val)
-             );
-         }
-        return $parsed;
+        return $data;
     }
 
 
@@ -71,13 +57,14 @@ class Landing extends Base {
             if ($validation_result === true) {
                 // save to database 
                 $chartdata = new \Models\ChartDataRow();
-                $result = $chartdata->save($_POST['chart_title'], $this->get_chart_data($_POST['dataEntry']));
+                $md5 = mb_substr(hash("md5", $_POST['chart_title']), 0, 5);
+                $result = $chartdata->save($md5, $_POST['chart_title'], $this->get_chart_data($_POST['dataEntry']));
                // redirect to the chart page
                 if($result):
-                     header("Location: ?c=chart&a=show&arg1=LineGraph&arg2=".hash('md5', $_POST['chart_title']));
+                     header("Location: ?c=chart&a=show&arg1=LineGraph&arg2=".$md5);
                      return;
                 else:
-                     echo "db error: ".mysql_error();
+                     echo "db error: ".mysqli_error();
                 endif;
             }
         endif;
