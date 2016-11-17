@@ -83,9 +83,10 @@ class Chart extends Base {
         );
         
         if ($data['type'] == 'xml') {
-             $view->render_xml($template_vars);
+            $template_vars["data"] = explode("\r\n",$template_vars["data"]);
+            $view->render_xml($template_vars);
         } else {
-             $view->render($template_vars);
+            $view->render($template_vars);
         }
     }
 }
