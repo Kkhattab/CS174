@@ -20,19 +20,20 @@ class Base {
         self::connect();
         
         // execute
-        return mysql_query($query, self::$db);
+        return mysqli_query(self::$db,$query);
     }
     
     // connect to database
     public static function connect() {
         // if there is no connection yet
         if (!self::$db):
-            self::$db = mysql_connect(Config::DBHOST, Config::DBUSER, Config::DBPASS) 
-                    or die(mysql_error());
-            mysql_select_db(Config::DBNAME, self::$db) 
-                    or die(mysql_error());
+            self::$db = mysqli_connect(Config::DBHOST, Config::DBUSER, Config::DBPASS, Config::DBNAME) 
+                    or die(mysqli_error(self::$db));
+            mysqli_select_db(self::$db, Config::DBNAME) 
+                    or die(mysqli_error(self::$db));
             // if this is the first time we connect add an event listener
             // this function will be invoked once the php program ends
+
             if(!self::$shutdown_handler_registered):
                 register_shutdown_function(array("Models\\Base", "disconnect"));
                 self::$shutdown_handler_registered = true;
@@ -43,7 +44,7 @@ class Base {
     public static function disconnect() {
         // if we have an active connection -> disconnect
         if (self::$db) :
-            mysql_close(self::$db);
+            mysqli_close(self::$db);
             self::$db = null;
         endif;
     }
@@ -52,6 +53,6 @@ class Base {
     // http://www.w3schools.com/Sql/sql_injection.asp
     public static function escape($string) {
         self::connect();
-        return mysql_real_escape_string($string, self::$db);
+        return mysqli_real_escape_string(self::$db,$string);
     }
 }

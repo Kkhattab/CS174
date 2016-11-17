@@ -9,13 +9,13 @@ class ChartDataRow extends Base {
         $query = "SELECT * FROM chart_data WHERE chart_hash = '$hash' ORDER BY `order`";
         $result = self::query($query);
         
-        if (mysql_num_rows($result) == 0) {
+        if (mysqli_num_rows($result) == 0) {
             return false;
         }
         
         $title = null;
         $data = array();
-        while ($row = mysql_fetch_assoc($result)) {
+        while ($row = mysqli_fetch_assoc($result)) {
             if ($title === null) {
                 $title = $row['title'];
             }

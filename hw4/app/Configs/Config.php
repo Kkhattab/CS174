@@ -9,5 +9,5 @@ class Config {
 	const DBUSER = "root";
 	const DBPASS = "";
 	const DBNAME = "localdb";
-	const DBHOST = "localhost";
+	const DBHOST = "127.0.0.1";
 }
