@@ -25,7 +25,6 @@ class CreateDB extends Base {
             echo "Database created successfully.";
         } else {
             echo "Error initializing database: " . mysqli_error($connection);
-            return;
         }     
 
         // List all models:
