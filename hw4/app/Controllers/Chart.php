@@ -21,7 +21,7 @@ class Chart extends Base {
         $rows = explode("\r\n",$original);
         foreach($rows as $row){
             $values = explode(',',$row);
-            $parsed[$values[0]] = $values[1] .','. $values[2];
+            $parsed[$values[0]] = array( 0 => $values[1], 1=> $values[2]);
         }
         return json_encode($parsed);
     }
