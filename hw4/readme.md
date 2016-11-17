@@ -8,30 +8,28 @@ Kevin Hou : 008345688
 #Setup 
 ---
 
-1. Create a new database in phpmyadmin.
-2. Update the config.php DBNAME for the table you just created.
+1. Drag HW4 folder into Apache document root. 
+
+2. Navigate inside HW4 direcotry and from the command line enter the following command `php CreateDB.php`. The database, & table will be created for you with this script.
+
+3. You should be at the landing page and have the ability to enter data. Here is some dummy data for you to paste into the text area and share:
 
 ```
-class Config {
-
-const DBUSER = "root";
-const DBPASS = "";
-const DBNAME = "nameofdb";
-const DBHOST = "localhost";
-const BASEURL = "http://localhost/hw3";
-}
+Jan, 500, 50
+Feb, 600, 80
+March, 300, 40
+April, 780, 25 
+June, 760, 55
+July, 360, 38 
 
 ```
 
-3. Load mockdata by visiting the script through its url http://localhost/hw4/CreateDB.php
-4. Vist the graph from the db that is mockdata by visiting the url provided: http://localhost/hw4/?c=chart&a=show&arg2=[HASH_OF_DATA]&arg1=LineGraph **Replace the [HASH_OF_DATA] with the hash from the database, for example my hash was 13665484cd59ac94b6caecd80e26bce5. It is the "chart_hash" column in db**
-5. Plot points and create your own custom charts!
+4. If you enter data in an incorrect format, proper validation will be thrown. 
 
-**Be sure to edit Base URL if needed to match where our HW4 folder is located.**
+*Our git log was to big to submit because we have all previous homeworks in one repo. We have attached screen shots of our github repo instead*  
 
 
-
-##Unit Tests 
+#Unit Tests 
 
 1. Run tests by visiting this url http://localhost//hw4/test.php?test=datavalidatortest
 
