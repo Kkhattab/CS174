@@ -69,7 +69,7 @@ class Chart extends Base {
             'Histogram' => $link_url . 'Histogram&amp;arg2=' . $data["hash"],
             'xml' => $link_url . 'xml&amp;arg2=' . $data["hash"],
             'json' => $link_url . 'json&amp;arg2=' . $data["hash"],
-            'jsonp' => $link_url . 'jsonp&amp;arg2=' . $data["hash"]
+            'jsonp' => $link_url . 'jsonp&amp;arg2=' . $data["hash"] . '&amp;arg3=alert'
         );
         // get the page title and pass it into the current view 
         $template_vars = array(
