@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Chart consists of multiple points -->
+<!ELEMENT chart (point*) >
+
+<!-- Chart has title attribute which is a string and is required -->
+<!ATTLIST chart title CDATA #REQUIRED>
+
+<!-- md5 hash of the data is required -->
+<!ATTLIST chart hash CDATA #REQUIRED>
+
+<!-- Point is an element and contains multiple values -->
+<!ELEMENT point (value+) >
+
+<!-- Point element has required label attribute -->
+<!ATTLIST point label CDATA #REQUIRED>
+
+<!-- Value is an element that doesn't have any other attributes/elements nested-->
+<!ELEMENT value (#PCDATA)>

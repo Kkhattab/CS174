@@ -21,7 +21,6 @@ March, 300, 40
 April, 780, 25 
 June, 760, 55
 July, 360, 38 
-
 ```
 
 4. If you enter data in an incorrect format, proper validation will be thrown. 
