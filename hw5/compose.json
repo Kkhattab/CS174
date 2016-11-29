@@ -1,0 +1,16 @@
+{
+    "require-dev": {
+        "simpletest/simpletest": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "app/",
+            "Controllers\\": "app/Controllers/",
+            "Models\\": "app/Models/",
+            "Views\\": "app/Views/"
+        }
+    },
+    "require": {
+        "joshcam/mysqli-database-class": "dev-master"
+    }
+}

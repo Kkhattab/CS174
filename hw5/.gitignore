@@ -1,0 +1,4 @@
+# Exclude dependencies from repository
+vendor/
+composer.lock
+.DS_Store
