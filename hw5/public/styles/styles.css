@@ -1,0 +1,26 @@
+
+body {
+    font-family: Times;
+    font-size: 12pt;
+}
+
+#topmenu-container {
+    width: 100%;
+    padding-bottom: 2px;
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+}
+
+#topmenu {
+    width: 650px;
+    margin: auto;
+}
+
+#languages {
+    float: right;
+}
+
+.clear {
+    float: none;
+    clear: both;
+}

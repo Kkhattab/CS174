@@ -23,5 +23,12 @@ class Config {
         // Stripe api credentials
         const STRIPE_PUBLIC_KEY = "pk_test_iGdK2tJhQasi3K83IQ3fUz63";
         const STRIPE_PRIVATE_KEY = "sk_test_7YRCAd1vHNzpQ7XCGv6cTeUT";
+
+         // Available languages
+        public static $LANGS = array(
+            "en_US" => "en",
+            "es" => "es"
+        );
+
 }
   
