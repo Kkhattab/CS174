@@ -23,7 +23,7 @@ class Base {
      * - Ensures we have a working connection to the database
      */
   
-    spublic function __construct() {
+    public function __construct() {
        
         self::connect();
     
