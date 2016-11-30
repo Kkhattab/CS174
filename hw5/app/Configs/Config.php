@@ -21,6 +21,7 @@ class Config {
         const WISH_PRICE_CURRENCY = "USD";
         const WISH_PRICE_CURRENCY_SIGN = "$";
         const MAX_FRIENDS_TO_MAIL = 10;
+        const FROM_EMAIL_ADDRESS = "noreply@throw-a-coin-app.com";
         
         // Stripe api credentials
         const STRIPE_PUBLIC_KEY = "pk_test_iGdK2tJhQasi3K83IQ3fUz63";

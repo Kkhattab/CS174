@@ -26,4 +26,16 @@ class Payment extends Base {
         $html .= $this->render_footer(array());
         return $html;
     }
+
+    public function renderEmail($data) {
+        $url = \Configs\Config::BASE_URL . 'index.php?c=postcard&m=show&id='
+                .$data["postcard"]->id.'&secret_key='.$data["postcard"]->secret;
+        
+        $text = $data['postcard']->wisher . ' sends his kind wishes to you';
+        $text .= "\n\n";
+        $text .= "He/She threw a coin into a fountain, check out the fountain with your own eyes!\n";
+        $text .= "Use the following link: " . $url;
+        $text .= "\n\nThrow-a-Coin app";
+        return $text;
+    }
 }

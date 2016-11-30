@@ -15,9 +15,6 @@ class Home extends Base {
      */
     
     public function render($data) {
-        // load javascript from /public/script/home.js
-        $this->addScript('https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js');
-        $this->addScript('home.js');
         
         // render page
         $html = $this->render_header($data);

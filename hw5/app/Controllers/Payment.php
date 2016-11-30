@@ -42,7 +42,7 @@ class Payment extends Base {
             
             // in case of successfull payment:
             $this->storeData();
-            $this->sendEmails();
+            $this->sendEmails($view, array("postcard" => $this->postcard));
             
             echo $view->renderSuccess(array("postcard" => $this->postcard));
         } catch (\Exception $ex) {
@@ -60,7 +60,21 @@ class Payment extends Base {
     }
 
 
-    public function sendEmails() {
-        // TODO
+     public function sendEmails(\Views\Payment $view, $data) {
+        $mails = explode(',', $_POST['targets']);
+        $valid_addresses = array();
+        foreach($mails as $email) {
+            if (preg_match('/[a-z\\.]+@[a-z\\.]+\\.(com|hu|biz|me|net|org|edu|gov)/i', $email)) {
+                $valid_addresses[] = "<$email>";
+            }
+        }
+        // TODO: remove
+        var_dump($valid_addresses);
+        mail(
+                implode(',',$valid_addresses), 
+                'Wishes from a friend', 
+                $view->renderEmail($data), 
+                "From: " . \Configs\Config::FROM_EMAIL_ADDRESS);
     }
+
 }

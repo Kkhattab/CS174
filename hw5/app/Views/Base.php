@@ -8,36 +8,7 @@ namespace Views;
 
 class Base {
    
-    protected $scripts = array();
-    
-    /**
-     * Saves the script to load when page loads
-     * @param string $url relative or absolute url to the script
-     */
-
-    public function addScript($url) {
-        $this->scripts []= $url;
-    }
-    
-    /**
-     * Creates code for loading javascripts
-     */
-
-    protected function load_js() {
-        $html = "";
-        foreach($this->scripts as $url) {
-            
-            if (substr($url, 0, 7) != 'http://'
-                    && substr($url, 0, 8) != 'https://'
-                    && substr($url, 0, 3) != '://') {
-                // this is a relative url
-                $url = \Configs\Config::BASE_URL . 'public/scripts/' . $url;
-            }
-            $html .= '<script type="text/javascript" src="' . $url . '"></script>';
-        }
-        return $html;
-    }
-
+  
     /**
      * Renders the beginning part of the html code and returns it
      * 
@@ -45,18 +16,18 @@ class Base {
      * @return string header html code
      */
 
-    public function render_header($data) {
-       
+     public function render_header($data) {
         $html_title = isset($data["page_title"]) ? $data["page_title"] . " - " : "";
         $html_title .= "Throw-a-coin app";
-       
+        $homejs = \Configs\Config::BASE_URL . 'public/scripts/home.js';
         $html = '
         <!DOCTYPE html>
         <html>
         <head>
                     <title>' . $html_title . '</title>
                     <link rel="stylesheet" type="text/css" href="public/styles/styles.css" />
-                    '.$this->load_js().'
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                    <script src="'.$homejs.'"></script>
         </head>
         <body>
                     <div id="topmenu-container">
@@ -68,7 +39,7 @@ class Base {
                     <div class="wrapper">';
         return $html;
     }
-
+    
     /**
      * Renders the ending part of the html code and returns it
      * @param array $data model data passed to the view
