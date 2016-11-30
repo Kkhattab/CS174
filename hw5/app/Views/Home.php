@@ -54,7 +54,15 @@ class Home extends Base {
                     <option value="purple">Purple</option>
                     <option value="orange">Orange</option>
                 </select><br>
+                
+                <label for="targets">Email addresses:</label><br>
+                <span class="note">[comma separated list of email addresses]</span><br>
+                <span class="note">[up to '.$data['max-mail'].' addresses]</span><br>
+                <textarea type="text" placeholder="name@isp.com" name="targets" 
+                    id="input_emails"></textarea>
+                <br>
             </div>
+            
             <div class="column">
                 <div id="well-container">
                     <img src="./public/images/well1.jpg" id="well-image">

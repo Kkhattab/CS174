@@ -56,3 +56,8 @@ hr {
     margin: 0px;
     padding: 25px;
 }
+
+.note {
+    font-style: italic;
+    color: #AAAAAA;
+}
