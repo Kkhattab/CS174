@@ -22,7 +22,7 @@ class Home extends Base {
         // render page
         $html = $this->render_header($data);
         $html .= 
-        '<div class="wrapper">
+        '<form action=".?c=payment&m=submit" method="POST">
             <div style="text-align: center">
                 <h1>Throw a Coin in the Fountain</h1>
                 <p class="quote">...and send your kind wishes to the ones you love most</p>
@@ -71,7 +71,19 @@ class Home extends Base {
             <div class="clear"></div>
             <hr>
             <h2>Throw that coin</h2>
-        </div>';
+            <div>
+                <label for="card_num">Card number:</label><br>
+                <input type="text" placeholder="ex. 4012888888881881" name="card_num" id="card_num"><br>
+                
+                <label for="exp_year">Expiry year:</label>
+                <input type="text" placeholder="2015" name="exp_year" id="exp_year" class="small">
+                <label for="exp_month">month:</label>
+                <input type="text" placeholder="02" name="exp_month" id="exp_month" class="small">
+                <br>
+                <input type="submit" name="throw-a-coin" value="Throw it!">
+            </div>
+        </form>';
+       
         $html .= $this->render_footer($data);
         return $html;
     }

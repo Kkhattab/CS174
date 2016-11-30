@@ -32,6 +32,9 @@ switch ($controller):
     case "home" :
         $controller = new Controllers\Home();
         break;
+    case "payment" :
+        $controller = new Controllers\Payment();
+        break;
     default :
         // set proper http message
         header("HTTP/1.0 404 Not Found");

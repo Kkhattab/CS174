@@ -64,7 +64,8 @@ class Base {
                             '. $this->render_language_selection_box() .'
                         </div>
                         <div class="clear"></div>
-                    </div>';
+                    </div>
+                    <div class="wrapper">';
         return $html;
     }
 
@@ -75,7 +76,7 @@ class Base {
      */
 
     public function render_footer($data) {
-        $html = '</body></html>';
+        $html = '</div></body></html>';
         return $html;
     }
 

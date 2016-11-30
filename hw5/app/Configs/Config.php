@@ -15,7 +15,9 @@ class Config {
         const DBNAME = "localdb";
         
         // General app configuration
-        const WISH_PRICE = 0.25;
+        const WISH_PRICE = 50; // 50 cents (0.5 usd)
+                               // minimum amount possible
+                               // see: https://support.stripe.com/questions/what-is-the-minimum-amount-i-can-charge-with-stripe
         const WISH_PRICE_CURRENCY = "USD";
         const WISH_PRICE_CURRENCY_SIGN = "$";
         const MAX_FRIENDS_TO_MAIL = 10;
