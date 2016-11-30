@@ -1,13 +1,20 @@
 <?php
 namespace Controllers;
+namespace Controllers;
 /**
  * This is controller which will handle payment
  * and send emails
  *
- * @author kareem
+ * @author kareem, kevin, avinash
  */
 class Payment extends Base {
     
+    /**
+     * @var \Models\Postcard Postcard db for successful payments
+     */
+    
+    private $postcard;
+
     public function submit() {
         // set up stripe
         \Stripe\Stripe::setApiKey(\Configs\Config::STRIPE_PRIVATE_KEY);
@@ -15,7 +22,6 @@ class Payment extends Base {
         $view = new \Views\Payment();
         
         try {
-            
             // populate credit card info from user
             $myCard = array(
                 'number' => $_POST['card_num'], 
@@ -23,22 +29,38 @@ class Payment extends Base {
                 'exp_year' => $_POST['exp_year']);
             
             if (
-                empty($myCard['number']) || !is_numeric($myCard['number'])
+                    empty($myCard['number']) || !is_numeric($myCard['number'])
                     || empty($myCard['exp_month']) || !is_numeric($myCard['exp_month'])
                     || empty($myCard['exp_year']) || !is_numeric($myCard['exp_year'])) {
-                
                 throw new \Exception("Please provide valid credit card data");
             }
-          
             // make a charge
             $charge = \Stripe\Charge::create(array(
                 'card' => $myCard, 
                 'amount' => \Configs\Config::WISH_PRICE, 
                 'currency' => \Configs\Config::WISH_PRICE_CURRENCY));
             
-            echo $view->renderSuccess();
+            // in case of successfull payment:
+            $this->storeData();
+            $this->sendEmails();
+            
+            echo $view->renderSuccess(array("postcard" => $this->postcard));
         } catch (\Exception $ex) {
             echo $view->renderError(array("message" => $ex->getMessage()));
         }
+    }
+
+    public function storeData() {
+        $this->postcard = new \Models\Postcard();
+        $this->postcard->wisher = $_POST['wisher'];
+        $this->postcard->image = $_POST['fountain'];
+        $this->postcard->border = $this->postcard->getBorderValue(
+                $_POST['border-style'], $_POST['border-color']);
+        $this->postcard->save();
+    }
+
+
+    public function sendEmails() {
+        // TODO
     }
 }

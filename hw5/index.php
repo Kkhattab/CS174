@@ -35,6 +35,9 @@ switch ($controller):
     case "payment" :
         $controller = new Controllers\Payment();
         break;
+    case "postcard":
+        $controller = new Controllers\Postcard();
+        break;
     default :
         // set proper http message
         header("HTTP/1.0 404 Not Found");

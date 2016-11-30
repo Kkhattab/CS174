@@ -3,7 +3,6 @@
 // or visit http://localhost/hw5/createDB.php
 
 require 'vendor/autoload.php';
-
 try {
     $db = new MysqliDb(
             Configs\Config::DBHOST, Configs\Config::DBUSER, Configs\Config::DBPASS);
@@ -12,45 +11,40 @@ try {
     echo $ex->getMessage();
     exit();
 }
-
 $dbname = Configs\Config::DBNAME;
 //A schema is a database, so the SCHEMATA table provides information about databases.
 $dbexists = $db->rawQueryOne("SELECT SCHEMA_NAME "
         . "FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '$dbname'");
-
 if ($dbexists == null) {
     try {
-        $db->rawQuery("CREATE DATABASE `$dbname`");
+        $db->rawQuery("CREATE DATABASE `$dbname` COLLATE 'utf8_general_ci'");
         echo "Database '$dbname' created\n";
     } catch (Exception $ex) {
-        echo "Error while creating database\n";
+        echo "Error when creating database\n";
         echo $ex->getMessage();
         exit();
     }
 }
-
+//http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
 try {
     mysqli_select_db($db->mysqli(), $dbname);
     $result = $db->rawQuery(
-            "CREATE TABLE IF NOT EXISTS `postcards` (
+            "CREATE TABLE `postcards` (
                 `id` INT(11) NOT NULL AUTO_INCREMENT,
-                `lookup` VARCHAR(10) NOT NULL DEFAULT '0',
-                `image` VARCHAR(20) NOT NULL DEFAULT '0',
+                `secret` VARCHAR(10) NOT NULL DEFAULT '0' COLLATE 'utf8_general_ci',
+                `image` VARCHAR(20) NOT NULL DEFAULT '0' COLLATE 'utf8_general_ci',
                 `border` INT(11) NOT NULL DEFAULT '0',
-                `wisher` VARCHAR(250) NOT NULL DEFAULT '0',
-                PRIMARY KEY (`id`),
-                UNIQUE INDEX `lookup` (`lookup`)
+                `wisher` VARCHAR(250) NOT NULL DEFAULT '0' COLLATE 'utf8_general_ci',
+                PRIMARY KEY (`id`)
             )
             COMMENT='Store postcards sent via our system'
-            ENGINE=InnoDB
-            ;");
-   
+            COLLATE='utf8_general_ci'
+            ENGINE=InnoDB;");
     if ($db->getLastError()) {
         echo $db->getLastErrno() . ': ' . $db->getLastError();
     } else {
-        echo "Table has already been created!! \n";
+        echo "Table created, or already exists. By!\n";
     }
-
 } catch (Exception $ex) {
     echo "\n" . $ex->getMessage() . "\n";
 }
