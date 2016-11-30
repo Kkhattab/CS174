@@ -8,77 +8,91 @@ namespace Views;
 
 class Base {
    
-    public function render() {
-        return "";
+    protected $scripts = array();
+    
+    /**
+     * Saves the script to load when page loads
+     * @param string $url relative or absolute url to the script
+     */
+
+    public function addScript($url) {
+        $this->scripts []= $url;
     }
-   
+    
+    /**
+     * Creates code for loading javascripts
+     */
+
+    protected function load_js() {
+        $html = "";
+        foreach($this->scripts as $url) {
+            
+            if (substr($url, 0, 7) != 'http://'
+                    && substr($url, 0, 8) != 'https://'
+                    && substr($url, 0, 3) != '://') {
+                // this is a relative url
+                $url = \Configs\Config::BASE_URL . 'public/scripts/' . $url;
+            }
+            $html .= '<script type="text/javascript" src="' . $url . '"></script>';
+        }
+        return $html;
+    }
+
     /**
      * Renders the beginning part of the html code and returns it
      * 
-     * @param and array of model data to render the view
-     * @return html code string
-    */
-    
+     * @param array $data model data passed to the view
+     * @return string header html code
+     */
+
     public function render_header($data) {
-        
-        $html_title = isset($data["page_title"]) ? $data["page_title"] . " - " : "";
        
+        $html_title = isset($data["page_title"]) ? $data["page_title"] . " - " : "";
         $html_title .= "Throw-a-coin app";
        
         $html = '
-		<!DOCTYPE html>
-		<html>
-		<head>
+        <!DOCTYPE html>
+        <html>
+        <head>
                     <title>' . $html_title . '</title>
                     <link rel="stylesheet" type="text/css" href="public/styles/styles.css" />
-                    <!-- load any scripts here: -->
-                    <!-- <script type="text/javascript" src="public/scripts/*"></script> -->
-		</head>
-		<body>
-                    <div class="wrapper">
-                        <div id="topmenu-container"><div id="topmenu">
+                    '.$this->load_js().'
+        </head>
+        <body>
+                    <div id="topmenu-container">
+                        <div id="topmenu">
                             '. $this->render_language_selection_box() .'
                         </div>
                         <div class="clear"></div>
                     </div>';
-      
-        return $html;
-    }
-    
-   /**
-   	 * Renders the footer of the html code and returns it
-     * 
-     * @param and array of model data to render the view
-     * @return html code string
-    */
-    
-    public function render_footer($data) {
-        $html = '</div></body></html>';
         return $html;
     }
 
-     /**
-   	 * Renders the language box where user selects language
-     * 
-     * @param null
-     * @return html code string
-    */
-    
+    /**
+     * Renders the ending part of the html code and returns it
+     * @param array $data model data passed to the view
+     * @return string header html code
+     */
+
+    public function render_footer($data) {
+        $html = '</body></html>';
+        return $html;
+    }
+
     public function render_language_selection_box() {
-        
+       
         $html = '<div id="languages">';
         $html .= _("SELECT_A_LANGUAGE") . ": ";
         
         $links = array();
         $urlbase = \Configs\Config::BASE_URL . "index.php";
-        
-        //foreach($array as $key => $value)
+       
         foreach (\Configs\Config::$LANGS as $code => $name) {
             $links []= $code == $_SESSION['lang']
                     ? "<b>[$name]</b>"
                     : "<a href=\"$urlbase?c=home&m=switch_lang&lang=$code\">$name</a>";
         }
-        
+       
         $html .= implode(", ", $links);
         $html .= '</div>';
         return $html;

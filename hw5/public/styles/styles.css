@@ -24,3 +24,23 @@ body {
     float: none;
     clear: both;
 }
+
+.wrapper {
+    width: 650px;
+    margin: auto;
+}
+
+.column {
+    float: left;
+    width: 315px;
+    padding: 10px;
+    padding-left: 0px;
+}
+
+input, textarea, button, select {
+    margin: 0.5em 15px;
+}
+
+img {
+    width: 100%;
+}
