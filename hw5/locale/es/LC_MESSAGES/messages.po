@@ -95,7 +95,7 @@ msgid "LBL_MONTH"
 msgstr "month"
 
 msgid "FORM_SECTION_PAYMENT"
-msgstr "Throw a virtual coin"
+msgstr "Lanzar una moneda virtual"
 
 msgid "BTN_THROW_IT"
 msgstr "Throw a coin!"
