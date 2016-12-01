@@ -1,5 +1,5 @@
 <?php
-namespace Controllers;
+
 namespace Controllers;
 /**
  * This is controller which will handle payment
