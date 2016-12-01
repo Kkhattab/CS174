@@ -19,7 +19,6 @@ class Home {
     public function index() {
         
         $data = array(
-            "greeting" => _("TEST_MESSAGE"),
             "max-mail" => \Configs\Config::MAX_FRIENDS_TO_MAIL
         );
         

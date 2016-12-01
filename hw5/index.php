@@ -1,28 +1,36 @@
 <?php
-// Start a session this will be used to store the selected language
+
+//session start to store language
 session_start();
 
-if(empty($_SESSION['lang'])) {
-    $_SESSION['lang'] = "en_US";
+// Multi language support
+function __($text_id, array $substitute = array()) {
+    $message = gettext($text_id); // get message translation via gettext
+    foreach ($substitute as $key => $value) {
+        $message = str_replace('{{'.strtolower($key).'}}', $value, $message);
+    }
+    return $message;
 }
 
+if(empty($_SESSION['lang'])) {
+    $_SESSION['lang'] = "hu_HU";
+}
+
+$codeset = 'UTF-8';
 $language = $_SESSION['lang'];
-
-putenv("LANG=" . $language); 
-
+putenv('LANG='.$language.'.'.$codeset); 
+putenv('LANGUAGE='.$language.'.'.$codeset); 
 setlocale(LC_ALL, $language);
 
 // Set the text domain as "messages"
 $domain = "messages";
 bindtextdomain($domain, "Locale");
-bind_textdomain_codeset($domain, 'UTF-8');
-
+bind_textdomain_codeset($domain, $codeset);
 // set domain
 textdomain($domain);
+
 // ----------------------
-
 include "vendor/autoload.php";
-
 //$_GET contains the keys / values that are passed to your script in the URL.
 $controller = isset($_GET["c"]) ? $_GET["c"] : "home";
 // default method is index
@@ -45,9 +53,10 @@ switch ($controller):
         die(_("E404"));
         break; // die will exit the script anyway
 endswitch;
-// Get to the controller
+
+// controller
 if (method_exists($controller, $method)):
-    // if method exists in the controller call it else kill the app
+    // if methord exists in the controller call it else kill the app
     call_user_func(array($controller, $method));
 else :
     // Output a message and terminate the current script

@@ -32,7 +32,7 @@ class Payment extends Base {
                     empty($myCard['number']) || !is_numeric($myCard['number'])
                     || empty($myCard['exp_month']) || !is_numeric($myCard['exp_month'])
                     || empty($myCard['exp_year']) || !is_numeric($myCard['exp_year'])) {
-                throw new \Exception("Please provide valid credit card data");
+                 throw new \Exception(_("PROVIDE_VALID_CARD_DATA"));
             }
             // make a charge
             $charge = \Stripe\Charge::create(array(
@@ -72,7 +72,7 @@ class Payment extends Base {
         var_dump($valid_addresses);
         mail(
                 implode(',',$valid_addresses), 
-                'Wishes from a friend', 
+                 _("MAIL_SUBJECT"), 
                 $view->renderEmail($data), 
                 "From: " . \Configs\Config::FROM_EMAIL_ADDRESS);
     }

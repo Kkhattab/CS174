@@ -20,8 +20,8 @@ class Postcard {
         $border = \Models\Postcard::getBorder($postcard->border);
         $pdf->border = $border['style'];
         $pdf->color = $border['color'];
-        $pdf->title = "{$postcard->wisher}'s postcard";
-        $pdf->message = "{$postcard->wisher} has thrown a coin into the fountain, and wished all the bests for you!";
+        $pdf->title = __("HIS_POSTCARD", array('name' => $postcard->wisher));
+        $pdf->message = __("PDF_LONG_MESSAGE", array('name' => $postcard->wisher));
         $pdf->DrawPdf();
         //Finally, the document is closed and sent to the browser with Output().
         $pdf->Output();

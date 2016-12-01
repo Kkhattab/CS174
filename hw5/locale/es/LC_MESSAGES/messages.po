@@ -16,5 +16,104 @@ msgstr ""
 msgid "SELECT_A_LANGUAGE"
 msgstr "Selecciona un idioma"
 
+msgid "PROVIDE_VALID_CARD_DATA"
+msgstr "¡Proporcione datos válidos de la tarjeta de crédito!"
+
 msgid "E404"
 msgstr "La página solicitada no se encuentra en este servidor"
+
+msgid "MAIL_SUBJECT"
+msgstr "Deseos de un amigo"
+
+msgid "HIS_POSTCARD"
+msgstr "{{name}}'s postcard"
+
+msgid "PDF_LONG_MESSAGE"
+msgstr "{{name}} ha lanzado una moneda en la fuente, y deseado todos los mejores para usted!"
+
+msgid "MAIN_PAGE_TITLE"
+msgstr "Tirar una moneda en la fuente"
+
+msgid "MAIN_PAGE_SUBTITLE"
+msgstr "... y envía tus amables deseos a los que más te gustan"
+
+msgid "CUSTOMIZE_YOUR_WISH"
+msgstr "Personaliza tu deseo"
+
+msgid "LBL_NAME"
+msgstr "Tu nombre"
+
+msgid "LBL_FOUNTAIN"
+msgstr "Elija un pozo"
+
+msgid "VAL_FOUNTAIN_TYPE_DRAWING"
+msgstr "Dibujo"
+
+msgid "VAL_FOUNTAIN_TYPE_3D"
+msgstr "3D"
+
+msgid "VAL_FOUNTAIN_TYPE_3D_REAL"
+msgstr "Realistic 3D"
+
+msgid "LBL_FRAME_STYLE"
+msgstr "Seleccione el estilo del marco de imagen"
+
+msgid "LBL_FRAME_COLOR"
+msgstr "Seleccionar el color del marco"
+
+msgid "COLOR_BLACK"
+msgstr "Negro"
+
+msgid "COLOR_RED"
+msgstr "Rojo"
+
+msgid "COLOR_GREEN"
+msgstr "Verde"
+
+msgid "COLOR_PURPLE"
+msgstr "Púrpura"
+
+msgid "COLOR_ORANGE"
+msgstr "Naranja"
+
+msgid "LBL_EMAIL"
+msgstr "Correos electrónicos"
+
+msgid "DESCR_EMAIL"
+msgstr "[Lista de direcciones de correo electrónico separadas por comas]"
+
+msgid "DESCR_EMAIL_LIMIT"
+msgstr "[up to {{limit}} addresses]"
+
+msgid "LBL_CARD_NUM"
+msgstr "Card number"
+
+msgid "LBL_EXPIRY_YEAR"
+msgstr "Expiry year"
+
+msgid "LBL_MONTH"
+msgstr "month"
+
+msgid "FORM_SECTION_PAYMENT"
+msgstr "Throw a virtual coin"
+
+msgid "BTN_THROW_IT"
+msgstr "Throw a coin!"
+
+msgid "CARD_REJECTED"
+msgstr "Su tarjeta de crédito fue rechazada"
+
+msgid "TRY_AGAIN"
+msgstr "¡Inténtalo de nuevo!"
+
+msgid "DO_AGAIN"
+msgstr "Do again!"
+
+msgid "FROM_HERE"
+msgstr "here"
+
+msgid "PAYMENT_SUCCESS"
+msgstr "Su postal nueva se envía a las direcciones de correo electrónico que proporcionó! <br> Puede descargar su postal desde"
+
+msgid "MAIL_BODY"
+msgstr "{{name}} sends his kind wishes to you{{endl}}{{endl}}He/She threw a coin into a fountain, check out the fountain with your own eyes!{{endl}}Use the following link: {{url}}{{endl}}{{endl}}Regards, Throw-a-Coin App!"

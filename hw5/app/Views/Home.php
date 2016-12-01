@@ -21,22 +21,21 @@ class Home extends Base {
         $html .= 
         '<form action=".?c=payment&m=submit" method="POST">
             <div style="text-align: center">
-                <h1>Throw a Coin in the Fountain</h1>
-                <p class="quote">...and send your kind wishes to the ones you love most</p>
+                <h1>'._("MAIN_PAGE_TITLE").'</h1> 
+                <p class="quote">'._("MAIN_PAGE_SUBTITLE").'</p> most</p>
             </div>
-            <h2>Customize your wish</h2>
+            <h2>'._("CUSTOMIZE_YOUR_WISH").' </h2>
             <div class="column">
-                <label for="wisher">Your name:</label><br>
+                <label for="wisher">'._("LBL_NAME").'</label><br>
                 <input type="text" placeholder="John Doe" name="wisher" id="input_wisher"><br>
                 
-                <label for="fountain">Choose a well:</label><br>
-                <select name="fountain" id="input_fountain" onchange="javascript:changeWellImage()">
-                    <option value="well1">Drawing</option>
-                    <option value="well2">3D</option>
-                    <option value="well3">3D Realistic</option>
+                <label for="fountain">'._("LBL_FOUNTAIN").'</label><br>
+                     <option value="well1">'._("VAL_FOUNTAIN_TYPE_DRAWING").'</option>
+                     <option value="well2">'._("VAL_FOUNTAIN_TYPE_3D").'</option>
+                     <option value="well3">'._("VAL_FOUNTAIN_TYPE_3D_REAL").'</option>
                 </select><br>
                 
-                <label for="border-style">Select picture frame style:</label><br>
+                <label for="border-style">'._("LBL_FRAME_STYLE").'</label><br>
                 <select name="border-style" id="input_border-style" onchange="javascript:changeWellBorder()">
                     <option value="none">None</option>
                     <option value="solid">Solid</option>
@@ -44,20 +43,19 @@ class Home extends Base {
                 </select><br>
                 
                 <label for="border-color">Select picture frame color:</label><br>
-                <select name="border-color" id="input_border-color" onchange="javascript:changeWellBorder()">
-                    <option value="black">Black</option>
-                    <option value="red">Red</option>
-                    <option value="green">Green</option>
-                    <option value="purple">Purple</option>
-                    <option value="orange">Orange</option>
+               <select name="border-color" id="input_border-color" onchange="javascript:changeWellBorder()">
+                     <option value="black">'._('COLOR_BLACK').'</option>
+                     <option value="red">'._('COLOR_RED').'</option>
+                     <option value="green">'._('COLOR_GREEN').'</option>
+                     <option value="purple">'._('COLOR_PURPLE').'</option>
+                     <option value="orange">'._('COLOR_ORANGE').'</option>
                 </select><br>
-                
-                <label for="targets">Email addresses:</label><br>
-                <span class="note">[comma separated list of email addresses]</span><br>
-                <span class="note">[up to '.$data['max-mail'].' addresses]</span><br>
-                <textarea type="text" placeholder="name@isp.com" name="targets" 
-                    id="input_emails"></textarea>
-                <br>
+                 
+                 <label for="targets">'._('LBL_EMAIL').':</label><br>
+                 <span class="note">'._('DESCR_EMAIL').'</span><br>
+                 <span class="note">'.__('DESCR_EMAIL_LIMIT', array('limit' => $data['max-mail'])).'</span><br>
+                 <textarea type="text" placeholder="name@email.com" name="targets" id="input_emails"></textarea>
+                 <br>
             </div>
             
             <div class="column">
@@ -67,17 +65,17 @@ class Home extends Base {
             </div>
             <div class="clear"></div>
             <hr>
-            <h2>Throw that coin</h2>
+            <h2>'._("FORM_SECTION_PAYMENT").'</h2>
             <div>
-                <label for="card_num">Card number:</label><br>
+                <label for="card_num">'._("LBL_CARD_NUM").'</label><br>
                 <input type="text" placeholder="ex. 4012888888881881" name="card_num" id="card_num"><br>
                 
-                <label for="exp_year">Expiry year:</label>
+                <label for="exp_year">'._("LBL_EXPIRY_YEAR").'</label>
                 <input type="text" placeholder="2015" name="exp_year" id="exp_year" class="small">
-                <label for="exp_month">month:</label>
+                <label for="exp_month">'._("LBL_MONTH").'</label>
                 <input type="text" placeholder="02" name="exp_month" id="exp_month" class="small">
                 <br>
-                <input type="submit" name="throw-a-coin" value="Throw it!">
+                <input type="submit" name="throw-a-coin" value="'._("BTN_THROW_IT").'">
             </div>
         </form>';
        
