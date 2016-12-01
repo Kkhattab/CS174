@@ -29,10 +29,11 @@ class Home extends Base {
                 <label for="wisher">'._("LBL_NAME").'</label><br>
                 <input type="text" placeholder="John Doe" name="wisher" id="input_wisher"><br>
                 
-                <label for="fountain">'._("LBL_FOUNTAIN").'</label><br>
-                     <option value="well1">'._("VAL_FOUNTAIN_TYPE_DRAWING").'</option>
-                     <option value="well2">'._("VAL_FOUNTAIN_TYPE_3D").'</option>
-                     <option value="well3">'._("VAL_FOUNTAIN_TYPE_3D_REAL").'</option>
+                <label for="fountain">'._("LBL_FOUNTAIN").':</label><br>
+                <select name="fountain" id="input_fountain" onchange="javascript:changeWellImage()">
+                    <option value="well1">'._("VAL_FOUNTAIN_TYPE_DRAWING").'</option>
+                    <option value="well2">'._("VAL_FOUNTAIN_TYPE_3D").'</option>
+                    <option value="well3">'._("VAL_FOUNTAIN_TYPE_3D_REAL").'</option>
                 </select><br>
                 
                 <label for="border-style">'._("LBL_FRAME_STYLE").'</label><br>
