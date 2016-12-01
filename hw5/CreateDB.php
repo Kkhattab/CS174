@@ -28,6 +28,10 @@ if ($dbexists == null) {
 //http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
 try {
     mysqli_select_db($db->mysqli(), $dbname);
+
+    $stmt = $db->rawQuery("DROP TABLE IF EXISTS postcards;" );
+    
+
     $result = $db->rawQuery(
             "CREATE TABLE `postcards` (
                 `id` INT(11) NOT NULL AUTO_INCREMENT,
