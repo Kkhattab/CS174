@@ -10,8 +10,8 @@ class Config {
         // Database configuration
         const BASE_URL="http://localhost/hw5/";
         const DBUSER = "root";
-        const DBHOST = "localhost"; 
-        const DBPASS = "root";
+        const DBHOST = "127.0.0.1"; 
+        const DBPASS = "";
         const DBNAME = "localdb";
         
         // General app configuration

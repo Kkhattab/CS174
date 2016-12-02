@@ -47,7 +47,7 @@ try {
     if ($db->getLastError()) {
         echo $db->getLastErrno() . ': ' . $db->getLastError();
     } else {
-        echo "Table created, or already exists. By!\n";
+        echo "Table created, or already exists. Bye!\n";
     }
 } catch (Exception $ex) {
     echo "\n" . $ex->getMessage() . "\n";
