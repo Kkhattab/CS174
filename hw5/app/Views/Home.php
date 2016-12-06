@@ -26,7 +26,7 @@ class Home extends Base {
             </div>
             <h2>'._("CUSTOMIZE_YOUR_WISH").' </h2>
             <div class="column">
-                <label for="wisher">'._("LBL_NAME").'</label><br>
+                <label for="wisher">'._("LBL_NAME").':</label><br>
                 <input type="text" placeholder="John Doe" name="wisher" id="input_wisher"><br>
                 
                 <label for="fountain">'._("LBL_FOUNTAIN").':</label><br>
@@ -36,7 +36,7 @@ class Home extends Base {
                     <option value="well3">'._("VAL_FOUNTAIN_TYPE_3D_REAL").'</option>
                 </select><br>
                 
-                <label for="border-style">'._("LBL_FRAME_STYLE").'</label><br>
+                <label for="border-style">'._("LBL_FRAME_STYLE").':</label><br>
                 <select name="border-style" id="input_border-style" onchange="javascript:changeWellBorder()">
                     <option value="none">None</option>
                     <option value="solid">Solid</option>
@@ -68,12 +68,12 @@ class Home extends Base {
             <hr>
             <h2>'._("FORM_SECTION_PAYMENT").'</h2>
             <div>
-                <label for="card_num">'._("LBL_CARD_NUM").'</label><br>
+                <label for="card_num">'._("LBL_CARD_NUM").':</label><br>
                 <input type="text" placeholder="ex. 4012888888881881" name="card_num" id="card_num"><br>
                 
-                <label for="exp_year">'._("LBL_EXPIRY_YEAR").'</label>
-                <input type="text" placeholder="2015" name="exp_year" id="exp_year" class="small">
-                <label for="exp_month">'._("LBL_MONTH").'</label>
+                <label for="exp_year">'._("LBL_EXPIRY_YEAR").':</label>
+                <input type="text" placeholder="2017" name="exp_year" id="exp_year" class="small">
+                <label for="exp_month">'._("LBL_MONTH").':</label>
                 <input type="text" placeholder="02" name="exp_month" id="exp_month" class="small">
                 <br>
                 <input type="submit" name="throw-a-coin" value="'._("BTN_THROW_IT").'">

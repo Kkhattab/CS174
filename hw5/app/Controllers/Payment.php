@@ -69,7 +69,7 @@ class Payment extends Base {
             }
         }
         // TODO: remove
-        var_dump($valid_addresses);
+        //var_dump($valid_addresses);
         mail(
                 implode(',',$valid_addresses), 
                  _("MAIL_SUBJECT"), 
