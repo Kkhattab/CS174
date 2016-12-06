@@ -86,10 +86,10 @@ msgid "DESCR_EMAIL_LIMIT"
 msgstr "[up to {{limit}} addresses]"
 
 msgid "LBL_CARD_NUM"
-msgstr "Card number"
+msgstr "Numero Credito"
 
 msgid "LBL_EXPIRY_YEAR"
-msgstr "Expiry year"
+msgstr "Experation"
 
 msgid "LBL_MONTH"
 msgstr "month"
@@ -98,7 +98,7 @@ msgid "FORM_SECTION_PAYMENT"
 msgstr "Lanzar una moneda virtual"
 
 msgid "BTN_THROW_IT"
-msgstr "Throw a coin!"
+msgstr "¡Lanza una moneda!"
 
 msgid "CARD_REJECTED"
 msgstr "Su tarjeta de crédito fue rechazada"
@@ -107,7 +107,7 @@ msgid "TRY_AGAIN"
 msgstr "¡Inténtalo de nuevo!"
 
 msgid "DO_AGAIN"
-msgstr "Do again!"
+msgstr "Repetir"
 
 msgid "FROM_HERE"
 msgstr "here"

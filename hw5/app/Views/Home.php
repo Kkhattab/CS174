@@ -22,7 +22,7 @@ class Home extends Base {
         '<form action=".?c=payment&m=submit" method="POST">
             <div style="text-align: center">
                 <h1>'._("MAIN_PAGE_TITLE").'</h1> 
-                <p class="quote">'._("MAIN_PAGE_SUBTITLE").'</p> most</p>
+                <p class="quote">'._("MAIN_PAGE_SUBTITLE").'</p>
             </div>
             <h2>'._("CUSTOMIZE_YOUR_WISH").' </h2>
             <div class="column">
