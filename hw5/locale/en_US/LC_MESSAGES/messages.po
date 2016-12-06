@@ -89,7 +89,7 @@ msgid "LBL_CARD_NUM"
 msgstr "Card number"
 
 msgid "LBL_EXPIRY_YEAR"
-msgstr "Expiry year"
+msgstr "Expiration year"
 
 msgid "LBL_MONTH"
 msgstr "month"
