@@ -22,6 +22,6 @@ Avinash More : 011145550
 
 *Note*: You should have a smtp mail server set up to test the mail functionality, we have verified it on our end. 
 
-*Note:* In our config we used 127.0.0.1 as our DBHOST, please make sure to update the config file with your Apache configuration. Also if you have your
+*Note:* In our config we used 127.0.0.1 as our DBHOST, please make sure to update the config file with your Apache configuration. 
 
 *Note:* In our config we are leaving our stripe keys but feel free to replace them with yours. The assignment says to assume you will be putting in your own keys. 
