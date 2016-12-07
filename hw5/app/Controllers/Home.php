@@ -1,9 +1,5 @@
 <?php
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 namespace Controllers;
 /**
  * This is the default controller
@@ -14,7 +10,9 @@ namespace Controllers;
 class Home {
     
     /**
-     * Displays landing page
+     * Displays landing page.
+     *
+     * @return void.
      */
     public function index() {
         
@@ -30,8 +28,9 @@ class Home {
     }
     
     /**
-     * This method is responsible, for setting the desired language
-     * for the user
+     * This method is responsible, for setting the desired language for the user.
+     *
+     * @return void
      */
     
     public function switch_lang() {

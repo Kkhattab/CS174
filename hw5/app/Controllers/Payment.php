@@ -14,6 +14,12 @@ class Payment extends Base {
      */
     
     private $postcard;
+    /**
+    * Method to submit payment request, make payment and store postdard data
+    * if request was successful.
+    *   
+    * @return void
+    */
 
     public function submit() {
         // set up stripe
@@ -50,6 +56,11 @@ class Payment extends Base {
         }
     }
 
+    /**
+    * Method to store Postcard Data  in DB. 
+    *
+    * @return void
+    */
     public function storeData() {
         $this->postcard = new \Models\Postcard();
         $this->postcard->wisher = $_POST['wisher'];
@@ -59,8 +70,16 @@ class Payment extends Base {
         $this->postcard->save();
     }
 
+    /**
+    * Method to send emails. 
+    *
+    * @param \Views\Payment $view, it is an object of Payment class Under Views 
+    * @param String $data, associate array of postcard and postcard details 
+    *  
+    * @return void
+    */
 
-     public function sendEmails(\Views\Payment $view, $data) {
+    public function sendEmails(\Views\Payment $view, $data) {
         $mails = explode(',', $_POST['targets']);
         $valid_addresses = array();
         foreach($mails as $email) {

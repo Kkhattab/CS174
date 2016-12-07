@@ -39,14 +39,15 @@ class PDF extends \FPDF
     }
     
     /**
-     * Draws a dashed line
-     * x1 < x2
-     * y1 < y2
-     * @param float $x1
-     * @param float $y1
-     * @param float $x2
-     * @param float $y2
-     * @param float $dash_length
+     * Draws a dashed line where x1 < x2 and y1 < y2.
+     * 
+     * @param float $x1,
+     * @param float $y1,
+     * @param float $x2,
+     * @param float $y2,
+     * @param float $dash_length.
+     * 
+     * @return void.
      */
    
     private function LineDashed($x1, $y1, $x2, $y2, $dash_length) {
@@ -64,11 +65,13 @@ class PDF extends \FPDF
     }
     
     /**
-     * Draws a line, with the settings stored in this instance
-     * @param float $x1
-     * @param float $y1
-     * @param float $x2
-     * @param float $y2
+     * Draws a line, with the settings stored in this instance.
+     * @param float $x1,
+     * @param float $y1,
+     * @param float $x2,
+     * @param float $y2.
+     *
+     * @return void.
      */
 
     private function DrawLine($x1, $y1, $x2, $y2) {
@@ -92,7 +95,9 @@ class PDF extends \FPDF
     }
     
     /**
-     * Renders pdf document
+     * Renders pdf document.
+     *
+     * @return void.
      */
     function DrawPdf()
     {
