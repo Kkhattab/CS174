@@ -1,17 +1,18 @@
 <?php
 namespace Views;
 /**
- * This is the view for Home controller
+ * This is the view for Home controller.
  *
- * @author Kareem, Kevin, Avinash
+ * @author Kareem, Kevin, Avinash.
  */
 class Home extends Base {
     
     /**
-     * Renders landing page
+     * Renders landing page.
      * 
-     * @param array $data from model
-     * @return html code for the view
+     * @param array $data from model.
+     *
+     * @return html code for the view.
      */
     
     public function render($data) {

@@ -1,19 +1,21 @@
 <?php
 namespace Views;
-
 /**
- * Parent for all the Views
- * Frame of the HTML lives here
+ * Parent for all the Views.
+ * Frame of the HTML lives here.
+ *
+ * @author Kareem, Kevin, Avinash.
  */
 
 class Base {
    
   
     /**
-     * Renders the beginning part of the html code and returns it
+     * Renders the beginning part of the html code and returns it.
      * 
-     * @param array $data model data passed to the view
-     * @return string header html code
+     * @param array $data model data passed to the view.
+     *
+     * @return string header html code.
      */
 
      public function render_header($data) {
@@ -41,9 +43,11 @@ class Base {
     }
     
     /**
-     * Renders the ending part of the html code and returns it
-     * @param array $data model data passed to the view
-     * @return string header html code
+     * Renders the ending part of the html code and returns it.
+     *
+     * @param array $data model data passed to the view.
+     *
+     * @return string footer html code
      */
 
     public function render_footer($data) {
@@ -51,6 +55,13 @@ class Base {
         return $html;
     }
 
+    /**
+     * Renders the language selection box.
+     *
+     * @param array $data model data passed to the view.
+     *
+     * @return string language selection html code.
+     */
     public function render_language_selection_box() {
        
         $html = '<div id="languages">';

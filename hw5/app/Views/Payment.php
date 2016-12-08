@@ -4,10 +4,17 @@ namespace Views;
  * This class will render responses for payments.
  * Either it will be successful or throw exception.
  *
- * @author kareem, kevin, avinash
+ * @author Kareem, Kevin, Avinash.
  */
 class Payment extends Base {
    
+    /**
+    *   Renders error message.
+    *
+    *   @param String associative Array $data.
+    *   
+    *   @return $html string containing html code for rendering error message.
+    */
     public function renderError($data) {
         $html = $this->render_header(array());
         $html .= '<div class="error">'._("CARD_REJECTED").'</div>';
@@ -17,6 +24,13 @@ class Payment extends Base {
         return $html;
     }
     
+    /**
+    *   Renders payment success message along with the link for postcard PDF.
+    *
+    *   @param String Associative Array $data.
+    *   
+    *   @return $html string containing html code for rendering success message.
+    */
     public function renderSuccess($data) {
         $url = '?c=postcard&m=show&id='.$data["postcard"]->id.'&secret_key='.$data["postcard"]->secret;
         $html = $this->render_header(array());
@@ -27,6 +41,13 @@ class Payment extends Base {
         return $html;
     }
     
+    /**
+    *   Renders email message.
+    *
+    *   @param String Associative Array $data.
+    *   
+    *   @return $text.
+    */
     public function renderEmail($data) {
         $url = \Configs\Config::BASE_URL . 'index.php?c=postcard&m=show&id='
                 .$data["postcard"]->id.'&secret_key='.$data["postcard"]->secret;
