@@ -28,7 +28,11 @@ class Postcard extends Base {
     public $border;
     public $wisher;
    
-    // Gets the integer identifier for a combination of style and color
+    /**
+     *  Gets the integer identifier for a combination of style and color
+     *
+     *  @return void.
+    */
    
     public static function getBorderValue($style, $color) {
         $keymap = array(
@@ -43,9 +47,12 @@ class Postcard extends Base {
         );
         return $keymap[$style] + $keymap[$color];
     }
-    
-
-    // Get original values based on the stored integer value
+  
+    /**
+     *  Get original values based on the stored integer value.
+     *
+     *  @return void.
+    */
 
     public static function getBorder($value) {
         $reverse_keymap = array(
@@ -72,7 +79,12 @@ class Postcard extends Base {
         }
     }
    
-    // Load data from database
+     
+    /**
+     * Load data from database.
+     *
+     *  @return void.
+    */
     public function load() {
         self::$db->where('id', $this->id);
         $row = self::$db->getOne(self::TABLE);
@@ -84,9 +96,11 @@ class Postcard extends Base {
     }
     
     /**
-     * Stores data to database
-     * It will use UPDATE if record already exists
-     * or INSERT if it is a new record
+     * Stores data to database.
+     * It will use UPDATE if record already exists.
+     * or INSERT if it is a new record.
+     *
+     *  @return void.
      */
     
     public function save() {
@@ -105,8 +119,11 @@ class Postcard extends Base {
     }
    
     /**
-     * Returns data associated with this object as an array
-     * @return array of the fields of this object
+     * Returns data associated with this object as an array.
+     *
+     * @param string $includePrimaryKey, by default its value is set to true.
+     *
+     * @return array of the fields of this object.
      */
     
     private function _getData($includePrimaryKey = true) {
@@ -123,6 +140,13 @@ class Postcard extends Base {
         return $data;
     }
    
+    /**
+     * Returns data associated with this object as an array.
+     *
+     * @param number $length, by default its value is set to 10.
+     *
+     * @return $randomString.
+     */
     private function generateSecretKey($length = 10) {
         $abc = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $abcLength = strlen($abc);
@@ -134,7 +158,8 @@ class Postcard extends Base {
     }
     
     /**
-     * Load an object from database, only if secret key matches
+     * Load an object from database, only if secret key matches.
+     *
      * @return \Models\Postcard Postcard object from database
      */
 
