@@ -3,6 +3,8 @@
 namespace Controllers;
 /**
  * This class will generate the PDF files to download
+ *
+ *  @author Kareem, Kevin, Avinash.
  */
 class Postcard {
    

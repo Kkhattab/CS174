@@ -5,7 +5,7 @@ namespace Controllers;
  * This is the default controller
  * it will handle requests aiming the site root
  *
- * @author Kareem
+ * @author Kareem, Kevin, Avinash.
  */
 class Home {
     

@@ -5,7 +5,7 @@ namespace Controllers;
  * This is controller which will handle payment
  * and send emails
  *
- * @author kareem, kevin, avinash
+ * @author Kareem, Kevin, Avinash.
  */
 class Payment extends Base {
     
@@ -73,8 +73,8 @@ class Payment extends Base {
     /**
     * Method to send emails. 
     *
-    * @param \Views\Payment $view, it is an object of Payment class Under Views 
-    * @param String $data, associate array of postcard and postcard details 
+    * @param \Views\Payment $view, it is an object of Payment class Under Views, 
+    * @param String $data, associate array of postcard and postcard details.
     *  
     * @return void
     */
