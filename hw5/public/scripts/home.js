@@ -1,3 +1,9 @@
+/**
+*    Changes wellImage.
+*
+*    @return void.
+*/
+
 function changeWellImage() {
     
     var image_name = $("#input_fountain").val();
@@ -6,6 +12,11 @@ function changeWellImage() {
     
 }
 
+/**
+*    Changes wellborder.
+*
+*    @return void.
+*/
 function changeWellBorder() {
     
     var border_style = $("#input_border-style").val();
