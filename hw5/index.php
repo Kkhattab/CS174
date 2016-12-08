@@ -1,5 +1,9 @@
 <?php
-
+/**
+* This is the entry point of app.
+*
+* @author Kareem, Kevin, Avinash.
+*/
 //session start to store language
 session_start();
 

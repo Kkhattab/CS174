@@ -1,6 +1,12 @@
 <?php
-// run from command line  php CreateDB.php
-// or visit http://localhost/hw5/createDB.php
+/**
+*  run from command line  php CreateDB.php
+* or visit http://localhost/hw5/createDB.php.
+*
+* @author Kareem, Kevin, Avinash.
+*/
+
+
 
 require 'vendor/autoload.php';
 try {
