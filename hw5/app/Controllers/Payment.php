@@ -3,7 +3,7 @@
 namespace Controllers;
 /**
  * This is controller which will handle payment
- * and send emails
+ * and send emails.
  *
  * @author Kareem, Kevin, Avinash.
  */

@@ -2,7 +2,7 @@
 
 namespace Controllers;
 /**
- * Parent for all the controllers
+ * Parent for all the controllers.
  * 
  * @author Kareem, Kevin, Avinash.
  */

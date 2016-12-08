@@ -30,7 +30,7 @@ class Home {
     /**
      * This method is responsible, for setting the desired language for the user.
      *
-     * @return void
+     * @return void.
      */
     
     public function switch_lang() {
