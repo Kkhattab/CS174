@@ -31,6 +31,8 @@ class Base {
     
     /**
      * If there is no connection yet, connect to DB
+     *
+     * @return void
     */
     
     public static function connect() {
